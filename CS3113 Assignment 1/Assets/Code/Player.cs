@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,14 @@ public class Player : MonoBehaviour
 
     float xSpeed;
     Rigidbody2D _rigidbody;
+
+    bool[] spells = { false, false, false, false };
+
+    /********** Paper Scraps ************/
+    public string[] levels = { "wind", "water", "earth", "fire" };
+    public bool paperCollected = false;
+    public int currentLevel = 0;
+    /***********************************/
 
 
     /*------------ EARTH ------------*/
@@ -40,6 +49,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+
     }
 
     void FixedUpdate()
@@ -55,6 +65,7 @@ public class Player : MonoBehaviour
         if (transform.position.y < -10)
         {
             transform.position = Vector2.zero;
+            _rigidbody.velocity = Vector2.zero;
         }
 
         if ((xSpeed < 0 && transform.localScale.x > 0) || (xSpeed > 0 && transform.localScale.x < 0))
@@ -80,5 +91,26 @@ public class Player : MonoBehaviour
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
             _rigidbody.AddForce(new Vector2(0, jumpForce));
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spell"))
+        {
+            print("you got a spell");
+            paperCollected = true;
+            spells[currentLevel] = true; // TODO after this week, change this line
+            Destroy(collision.gameObject);
+        }
+        if (paperCollected)
+        {
+            if (collision.gameObject.CompareTag("Door"))
+            {
+                currentLevel = (currentLevel + 1) % 4;
+                paperCollected = false;
+                SceneManager.LoadScene(levels[currentLevel]);
+            }
+        }
+
     }
 }
