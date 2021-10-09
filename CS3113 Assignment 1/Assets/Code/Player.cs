@@ -37,15 +37,6 @@ public class Player : MonoBehaviour
      */
     void stretch(GameObject earthChunk, float vert)
     {
-        earthChunk.transform.position = new Vector2(earthChunk.transform.position.x,
-                                                    earthChunk.transform.position.y + vert / 2);
-        earthChunk.transform.localScale = new Vector3(earthChunk.transform.localScale.x,
-                                                      earthChunk.transform.localScale.y + vert,
-                                                      earthChunk.transform.localScale.z);
-    }
-
-    void newStretch(GameObject earthChunk, float vert)
-    {
         SpriteRenderer _sprite = earthChunk.GetComponent<SpriteRenderer>();
         earthChunk.transform.position = new Vector2(earthChunk.transform.position.x,
                                                     earthChunk.transform.position.y + vert / 2);
@@ -90,10 +81,8 @@ public class Player : MonoBehaviour
         Collider2D sideEarthTouch = Physics2D.OverlapCircle(front.position, .41f, earthLayer);
         if (vert != 0f)
         {
-            //if (earthTouch) { stretch(earthTouch.gameObject, vert); }
-            //if (sideEarthTouch) { stretch(sideEarthTouch.gameObject, vert); }
-            if (earthTouch) { newStretch(earthTouch.gameObject, vert); }
-            if (sideEarthTouch) { newStretch(sideEarthTouch.gameObject, vert); }
+            if (earthTouch) { stretch(earthTouch.gameObject, vert); }
+            if (sideEarthTouch) { stretch(sideEarthTouch.gameObject, vert); }
         }
 
         // jump
