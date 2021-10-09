@@ -43,6 +43,15 @@ public class Player : MonoBehaviour
                                                       earthChunk.transform.localScale.y + vert,
                                                       earthChunk.transform.localScale.z);
     }
+
+    void newStretch(GameObject earthChunk, float vert)
+    {
+        SpriteRenderer _sprite = earthChunk.GetComponent<SpriteRenderer>();
+        earthChunk.transform.position = new Vector2(earthChunk.transform.position.x,
+                                                    earthChunk.transform.position.y + vert / 2);
+        _sprite.size = new Vector2(_sprite.size.x, _sprite.size.y + vert);
+
+    }
     /*-------------------------------*/
 
     // Start is called before the first frame update
@@ -81,8 +90,10 @@ public class Player : MonoBehaviour
         Collider2D sideEarthTouch = Physics2D.OverlapCircle(front.position, .41f, earthLayer);
         if (vert != 0f)
         {
-            if (earthTouch) { stretch(earthTouch.gameObject, vert); }
-            if (sideEarthTouch) { stretch(sideEarthTouch.gameObject, vert); }
+            //if (earthTouch) { stretch(earthTouch.gameObject, vert); }
+            //if (sideEarthTouch) { stretch(sideEarthTouch.gameObject, vert); }
+            if (earthTouch) { newStretch(earthTouch.gameObject, vert); }
+            if (sideEarthTouch) { newStretch(sideEarthTouch.gameObject, vert); }
         }
 
         // jump

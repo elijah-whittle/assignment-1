@@ -8,27 +8,33 @@ public class earth : MonoBehaviour
     public int ySpeed;
     Rigidbody2D _rigidbody;
     // Start is called before the first frame update
-    public Vector3 minScale;
-    public Vector3 minPos;
-    public Vector3 maxScale;
-    public Vector3 maxPos;
+    //public Vector3 minScale;
+    public float minY;
+    //public Vector3 maxScale;
+    public float maxY;
+
+    public float minHeight;
+    public float maxHeight;
+
+    SpriteRenderer _sprite;
+
     void Start()
     {
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.localScale.y < minScale.y)
+        if (_sprite.size.y > maxHeight)
         {
-            transform.localScale = minScale;
-            transform.localPosition = minPos;
+            _sprite.size = new Vector2(_sprite.size.x, maxHeight);
+            transform.localPosition = new Vector3(transform.localPosition.x, maxY, transform.localPosition.z);
         }
-        if (transform.localScale.y > maxScale.y)
+        if (_sprite.size.y < minHeight)
         {
-            transform.localScale = maxScale;
-            transform.localPosition = maxPos;
+            _sprite.size = new Vector2(_sprite.size.x, minHeight);
+            transform.localPosition = new Vector3(transform.localPosition.x, minY, transform.localPosition.z);
         }
-
     }
 }
