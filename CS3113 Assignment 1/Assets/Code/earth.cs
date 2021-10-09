@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class earth : MonoBehaviour
 {
-    //public int speed;
-    public int ySpeed;
     Rigidbody2D _rigidbody;
     // Start is called before the first frame update
     //public Vector3 minScale;
     public float minY;
     //public Vector3 maxScale;
     public float maxY;
+    float bottomY;
 
     public float minHeight;
     public float maxHeight;
@@ -21,6 +20,7 @@ public class earth : MonoBehaviour
     void Start()
     {
         _sprite = GetComponent<SpriteRenderer>();
+        bottomY = transform.position.y - _sprite.size.y / 2;
     }
 
     // Update is called once per frame
@@ -29,12 +29,12 @@ public class earth : MonoBehaviour
         if (_sprite.size.y > maxHeight)
         {
             _sprite.size = new Vector2(_sprite.size.x, maxHeight);
-            transform.localPosition = new Vector3(transform.localPosition.x, maxY, transform.localPosition.z);
+            transform.localPosition = new Vector3(transform.localPosition.x, bottomY + maxHeight/2, transform.localPosition.z);
         }
         if (_sprite.size.y < minHeight)
         {
             _sprite.size = new Vector2(_sprite.size.x, minHeight);
-            transform.localPosition = new Vector3(transform.localPosition.x, minY, transform.localPosition.z);
+            transform.localPosition = new Vector3(transform.localPosition.x, bottomY + minHeight/2, transform.localPosition.z);
         }
     }
 }
