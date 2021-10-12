@@ -4,19 +4,21 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Spell
-  - Door
+  - Enemy
+  - Ground
+  - Fire
+  - lightPos
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Background
   - Water
   - UI
   - Ground
   - Earth
   - 
-  - 
+  - Front
   - 
   - 
   - 
@@ -40,6 +42,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 484775191
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Front
+    uniqueID: 1391240535
     locked: 0
