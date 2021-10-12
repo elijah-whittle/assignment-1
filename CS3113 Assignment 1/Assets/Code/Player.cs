@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     bool Wind_power = true;
     void closewindshield(){
         Wind_shield.GetComponent<Renderer>().enabled = false;
-                Wind_shield.GetComponent<Collider2D>().enabled = false;
+        Wind_shield.GetComponent<Collider2D>().enabled = false;
     }
     /*-------------------------------*/
 
