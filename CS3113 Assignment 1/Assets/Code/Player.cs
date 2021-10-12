@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
     public GameObject icePrefab;
     public GameObject healPrefab;
     public int castingForce = 800;
+    public Transform castPos;
 
     /*-------------------------------*/
 
@@ -160,7 +161,7 @@ public class Player : MonoBehaviour
         //if (Input.GetButtonDown("Fire1"))
         if(Input.GetKeyDown (KeyCode.R))
         {
-            GameObject newBlast = Instantiate(icePrefab, transform.position, Quaternion.identity);
+            GameObject newBlast = Instantiate(icePrefab, castPos.position, Quaternion.identity);
             newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x, 0));
         }
 
