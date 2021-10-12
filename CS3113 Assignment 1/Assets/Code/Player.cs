@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +16,14 @@ public class Player : MonoBehaviour
 
     float xSpeed;
     Rigidbody2D _rigidbody;
+
+    bool[] spells = { false, false, false, false };
+
+    /********** Paper Scraps ************/
+    public string[] levels = { "wind", "water", "earth", "fire" };
+    public bool paperCollected = false;
+    public int currentLevel = 0;
+    /***********************************/
 
 
     /*------------ EARTH ------------*/
@@ -30,11 +39,11 @@ public class Player : MonoBehaviour
      */
     void stretch(GameObject earthChunk, float vert)
     {
+        SpriteRenderer _sprite = earthChunk.GetComponent<SpriteRenderer>();
         earthChunk.transform.position = new Vector2(earthChunk.transform.position.x,
                                                     earthChunk.transform.position.y + vert / 2);
-        earthChunk.transform.localScale = new Vector3(earthChunk.transform.localScale.x,
-                                                      earthChunk.transform.localScale.y + vert,
-                                                      earthChunk.transform.localScale.z);
+        _sprite.size = new Vector2(_sprite.size.x, _sprite.size.y + vert);
+
     }
     /*-------------------------------*/
 
@@ -70,6 +79,7 @@ public class Player : MonoBehaviour
         if (transform.position.y < -10)
         {
             transform.position = Vector2.zero;
+            _rigidbody.velocity = Vector2.zero;
         }
 
         if (xSpeed < 0)
@@ -99,7 +109,7 @@ public class Player : MonoBehaviour
         }
 
         /* Fire */
-        if(Input.GetMouseButtonDown(0)){
+        if (Input.GetMouseButtonDown(0)){
             GameObject fire = Instantiate(fireBall);
             fire.GetComponent<fire>().shoot(left);
              fire.transform.position = firePos.transform.position; 
@@ -118,5 +128,29 @@ public class Player : MonoBehaviour
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
             _rigidbody.AddForce(new Vector2(0, jumpForce));
         }
+    }
+
+    /*
+     * Spell/Door
+     */
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spell"))
+        {
+            print("you got a spell");
+            paperCollected = true;
+            spells[currentLevel] = true; // TODO after this week, change this line
+            Destroy(collision.gameObject);
+        }
+        if (paperCollected)
+        {
+            if (collision.gameObject.CompareTag("Door"))
+            {
+                currentLevel = (currentLevel + 1) % 4;
+                paperCollected = false;
+                SceneManager.LoadScene(levels[currentLevel]);
+            }
+        }
+
     }
 }
