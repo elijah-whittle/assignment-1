@@ -8,6 +8,9 @@ TagManager:
   - Ground
   - Fire
   - lightPos
+  - Spell
+  - Door
+  - wind_bladepos
   layers:
   - Default
   - TransparentFX
