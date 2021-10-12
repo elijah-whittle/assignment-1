@@ -69,6 +69,14 @@ public class Player : MonoBehaviour
     }
     /*-------------------------------*/
 
+    /*------------ WATER ------------*/
+    public GameObject icePrefab;
+    public GameObject healPrefab;
+    public int castingForce = 800;
+
+    /*-------------------------------*/
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -148,6 +156,21 @@ public class Player : MonoBehaviour
             }
         }
 
+        /* Water */
+        //if (Input.GetButtonDown("Fire1"))
+        if(Input.GetKeyDown (KeyCode.R))
+        {
+            GameObject newBlast = Instantiate(icePrefab, transform.position, Quaternion.identity);
+            newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x, 0));
+        }
+
+        //if (Input.GetButtonDown("Fire3"))
+        if(Input.GetKeyDown (KeyCode.E))
+        {
+            GameObject healing = Instantiate(healPrefab, feet.position, Quaternion.identity);
+
+        }
+
         // jump
         if ((grounded || earthTouch) && Input.GetButtonDown("Jump"))
         {
@@ -159,7 +182,8 @@ public class Player : MonoBehaviour
     /*
      * Spell/Door
      */
-    private void OnTriggerEnter2D(Collider2D collision)
+    //private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Spell"))
         {
