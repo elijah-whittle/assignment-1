@@ -19,6 +19,7 @@ public class wind_Player : MonoBehaviour
     Rigidbody2D _rigidbody;
 
     // Start is called before the first frame update
+    // first disable the wind shield
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
