@@ -5,35 +5,49 @@ using UnityEngine;
 public class witch : MonoBehaviour
 {
     public int dir = 1;
-    public int health = 50;
+    public float health = 50f;
     public GameObject Player;
     public Transform fire_pos;
     public GameObject Bullet1;
-    public int speed = 5;
+    public Animator witchanimator;
+    public float speed = 1f;
     // Start is called before the first frame update
     private bool isattack = false;
+    private bool left = true;
+    void lookplayer(){
+        if (gameObject.transform.position.x < Player.transform.position.x){
+            transform.eulerAngles = new Vector3(0,180,0);
+            left = false;
+        }
+        else{
+            transform.eulerAngles = new Vector3(0,0,0);
+            left = true;
+        }
+    }
     void stay(){
+        lookplayer();
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,0f);
         isattack = false;
-        transform.LookAt(Player.transform); 
-        GetComponent<Rigidbody2D>().velocity = new Vector2(speed,0);
     }
     void move(){
+        lookplayer();
+        if (left == true){
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(speed*-1,0f);
+        }
+        else{gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(speed,0f);}
         isattack = false;
-        GetComponent<Rigidbody2D>().velocity = new Vector2(speed,GetComponent<Rigidbody2D>().velocity.x);
     }
     void attack(){
-        transform.LookAt(Player.transform);
+        lookplayer();
         isattack = true;
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,0f);
     }
     void Start()
     {
         //Vector2 currPos = transform.position;
         //float moveRight = transform.position.x;
         //float moveLeft = -transform.position.x;
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        gameObject.GetComponent<Animator>().SetFloat("speed", Mathf.Abs(gameObject.GetComponent<Rigidbody2D>().velocity.x));
-        gameObject.GetComponent<Animator>().SetBool("is_attack1", isattack);
-        gameObject.GetComponent<Animator>().SetFloat("health", health);
+        //Rigidbody2D rb = GetComponent<Rigidbody2D>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -46,6 +60,9 @@ public class witch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        witchanimator.SetFloat("speed", Mathf.Abs(gameObject.GetComponent<Rigidbody2D>().velocity.x));
+        witchanimator.SetBool("is_attack1", isattack);
+        witchanimator.SetFloat("health", health);
         if(health >= 25){
             int rand = Random.Range(0,5);
             if (rand==0){
