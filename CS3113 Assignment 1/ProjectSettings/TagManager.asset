@@ -11,6 +11,7 @@ TagManager:
   - Spell
   - Door
   - wind_bladepos
+  - wind_pill
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Earth
   - 
   - Front
-  - 
+  - Spells
   - 
   - 
   - 
@@ -53,4 +54,7 @@ TagManager:
     locked: 0
   - name: Front
     uniqueID: 1391240535
+    locked: 0
+  - name: Spells
+    uniqueID: 3424067959
     locked: 0
