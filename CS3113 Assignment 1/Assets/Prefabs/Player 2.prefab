@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9301c519bb66f45818a585109fa894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  magic: 0
   speed: 6
   jumpForce: 800
   groundLayer:
@@ -306,7 +307,7 @@ MonoBehaviour:
   lightPos: {fileID: 1689120378}
   lightBall: {fileID: 5680388090307094400, guid: ba5934d4be186234bbfe83bd35453c72, type: 3}
   Wind_blade: {fileID: 6394401709526515054, guid: 33cf24ac99fc9e647a9e02ce8432af83, type: 3}
-  wind_blade_pos: {fileID: 0}
+  wind_blade_pos: {fileID: 2102301022}
   Wind_shield: {fileID: 1336355053}
   icePrefab: {fileID: 7615487911535124368, guid: 935cdee3bb1c99b43a846ae4f2e4dd4a, type: 3}
   healPrefab: {fileID: 5575779250285277756, guid: 83c16e1d08944724f97d6178a0d3a2be, type: 3}
@@ -316,6 +317,8 @@ MonoBehaviour:
   isGrounded: 0
   mp: 100
   hp: 100
+  max_cd: 3
+  curr_cd: 3
 --- !u!61 &4489533668827005215
 BoxCollider2D:
   m_ObjectHideFlags: 0
