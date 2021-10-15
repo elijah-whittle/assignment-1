@@ -31,9 +31,7 @@ public class Player : MonoBehaviour
     bool[] spells = { false, false, false, false };
 
     /********** Paper Scraps ************/
-    public string[] levels = { "wind", "water", "earth", "fire" };
-    public bool paperCollected = false;
-    public int currentLevel = 0;
+    bool paperCollected = false;
     /***********************************/
 
 
@@ -202,14 +200,14 @@ public class Player : MonoBehaviour
         /* Wind */
         if (magic == Magic.Wind)
         {
-            if (Input.GetKeyDown(KeyCode.I))
+            if (Input.GetButtonDown("Fire1"))
             {
                 if (Wind_power)
                 {
                     GameObject newwind_blade = Instantiate(Wind_blade, wind_blade_pos.position, Quaternion.identity);
                 }
             }
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetButtonDown("Fire2"))
             {
                 if (Wind_power)
                 {
@@ -226,7 +224,7 @@ public class Player : MonoBehaviour
             //if (Input.GetButtonDown("Fire1"))
             if (ifCD == false)
             {
-                if (Input.GetKeyDown(KeyCode.R))
+                if (Input.GetButtonDown("Fire1"))
                 {
                     GameObject newBlast = Instantiate(icePrefab, castPos.position, Quaternion.identity);
                     newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x, 0));
@@ -246,7 +244,7 @@ public class Player : MonoBehaviour
 
 
             //if (Input.GetButtonDown("Fire3"))
-            if (Input.GetKeyDown(KeyCode.E))        //heals the player 
+            if (Input.GetButtonDown("Fire2"))        //heals the player 
             {
                 GameObject healing = Instantiate(healPrefab, feet.position, Quaternion.identity);
                 if (hp <= 85)
@@ -293,16 +291,16 @@ public class Player : MonoBehaviour
         {
             print("you got a spell");
             paperCollected = true;
-            spells[currentLevel] = true; // TODO after this week, change this line
+            spells[PublicVars.currentLevel] = true; // TODO after this week, change this line
             Destroy(collision.gameObject);
         }
         if (paperCollected)
         {
             if (collision.gameObject.CompareTag("Door"))
             {
-                currentLevel = (currentLevel + 1) % 4;
+                PublicVars.currentLevel = (PublicVars.currentLevel + 1) % 4;
                 paperCollected = false;
-                SceneManager.LoadScene(levels[currentLevel]);
+                SceneManager.LoadScene(PublicVars.levels[PublicVars.currentLevel]);
             }
         }
         if(collision.tag == "wind_pill"){
