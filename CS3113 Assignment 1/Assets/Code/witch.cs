@@ -6,7 +6,6 @@ public class witch : MonoBehaviour{
     public int dir = 1;
     public float health = 50;
     public GameObject Player;
-    public Transform fire_pos;
     public GameObject Bullet1;
     public Transform bulletpos;
     public int castingForce = 50;
@@ -52,6 +51,9 @@ public class witch : MonoBehaviour{
             yield return new WaitForSeconds(1.5f);
             currentState = (State)Random.Range(0,3);
         }
+        if(health==25){
+            _animator.SetTrigger("Stage2");
+        }
         while (health<=25 & health>0){
             yield return new WaitForSeconds(3);
             currentState = (State)Random.Range(4,8);
@@ -79,7 +81,6 @@ public class witch : MonoBehaviour{
 
     // Update is called once per frame
     private void FixedUpdate(){
-        _animator.SetFloat("health", health);
         lookplayer();
         switch(currentState){
             case State.move:
@@ -110,10 +111,22 @@ public class witch : MonoBehaviour{
                 break;
             case State.attack2:
                 _rigidbody.velocity = new Vector2(0.0f,0.0f);
+                _Timer+=Time.deltaTime;
+                if (_Timer>Timebetween){
+                    GameObject newBlast = Instantiate(Bullet1, bulletpos.position, Quaternion.identity);
+                    newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x*direction, 0));
+                    _Timer = 0;
+                }
                 Attack2();
                 break;
             case State.attack3:
                 _rigidbody.velocity = new Vector2(0.0f,0.0f);
+                _Timer+=Time.deltaTime;
+                if (_Timer>Timebetween){
+                    GameObject newBlast = Instantiate(Bullet1, bulletpos.position, Quaternion.identity);
+                    newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x*direction, 0));
+                    _Timer = 0;
+                }
                 Attack2();
                 break;
             default:
