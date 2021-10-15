@@ -748,6 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9301c519bb66f45818a585109fa894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  magic: 0
   speed: 6
   jumpForce: 800
   groundLayer:
@@ -755,6 +756,33 @@ MonoBehaviour:
     m_Bits: 64
   feet: {fileID: 1786946330}
   grounded: 0
+  levels:
+  - wind
+  - water
+  - earth
+  - fire
+  paperCollected: 0
+  currentLevel: 0
+  earthLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  touchingEarth: 0
+  firePos: {fileID: 0}
+  fireBall: {fileID: 0}
+  left: 0
+  lightPos: {fileID: 0}
+  lightBall: {fileID: 0}
+  Wind_blade: {fileID: 0}
+  wind_blade_pos: {fileID: 0}
+  Wind_shield: {fileID: 0}
+  icePrefab: {fileID: 0}
+  healPrefab: {fileID: 0}
+  castingForce: 800
+  castPos: {fileID: 0}
+  anim: {fileID: 0}
+  isGrounded: 0
+  mp: 100
+  hp: 100
 --- !u!1 &1786946329
 GameObject:
   m_ObjectHideFlags: 0
