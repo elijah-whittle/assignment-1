@@ -122,6 +122,8 @@ public class Player : MonoBehaviour
 
         }
 
+        if (PublicVars.paused) { return; }
+
         // if you fall off the map
         if (transform.position.y < -10)
         {
@@ -145,7 +147,6 @@ public class Player : MonoBehaviour
         }
 
         grounded = Physics2D.OverlapCircle(feet.position, .3f, groundLayer);
-        //isGrounded = Physics2D.OverlapCircle(feet.position, .3f);
 
         if (Input.GetKeyDown("1")) // Wind
         {
@@ -164,8 +165,8 @@ public class Player : MonoBehaviour
             magic = Magic.Water;
         }
 
-            /* Earth */
-            Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
+        /* Earth */
+        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
         if (magic == Magic.Earth)
         {
             float vert = Input.GetAxis("Vertical") * Time.deltaTime;
