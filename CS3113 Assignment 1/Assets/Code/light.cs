@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class light : MonoBehaviour
 {
+    private GameObject lightPos;
 
-    Transform pos;
-    public float speed;
+    private Vector2 lightLocation;
 
-    void Start(){
-        pos = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().lightPos;
+    public float speed; 
+
+    void start(){
+        lightPos = GameObject.Find("firePos");
     }
+
     void update(){
-        transform.position = Vector2.MoveTowards(transform.position, pos.position, speed * Time.deltaTime);
+        lightLocation = new Vector2(lightPos.transform.position.x, lightPos.transform.position.y);
+        transform.position = Vector2.MoveTowards(transform.position, lightLocation, speed *Time.deltaTime);
     }
-
 
 }

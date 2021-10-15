@@ -179,7 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1689120378}
   m_Layer: 0
-  m_Name: lightPos
+  m_Name: Torch
   m_TagString: lightPos
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -415,10 +415,10 @@ MonoBehaviour:
     m_Bits: 128
   front: {fileID: 1601567306}
   touchingEarth: 0
-  firePos: {fileID: 1601567306}
+  firePos: {fileID: 292514126}
   fireBall: {fileID: 7025524892482740924, guid: 68571014e1fd48c498c4389579793d00, type: 3}
   left: 0
-  lightPos: {fileID: 1601567306}
+  lightPos: {fileID: 1689120378}
   lightBall: {fileID: 9057293321721505384, guid: 6a5daa3db6be75f42a3e5c4fc7010370, type: 3}
   Wind_blade: {fileID: 6394401709526515054, guid: 33cf24ac99fc9e647a9e02ce8432af83, type: 3}
   wind_blade_pos: {fileID: 1601567306}

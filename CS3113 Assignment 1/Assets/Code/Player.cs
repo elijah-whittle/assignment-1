@@ -137,10 +137,9 @@ public class Player : MonoBehaviour
         }
 
         if(Input.GetMouseButtonDown(1)){
-            GameObject light = Instantiate(lightBall);
-            //light.GetComponent<light>().torch(left);
-            light.transform.position = lightPos.transform.position;
-            Destroy(light, 10.0f);
+            GameObject torch = Instantiate(lightBall);
+            torch.transform.position = lightPos.transform.position;
+            Destroy(torch, 10.0f);
         }
 
         /* Wind */
