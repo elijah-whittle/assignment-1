@@ -7,6 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+
+    public enum Magic
+    {
+        None,
+        Wind,
+        Fire,
+        Earth,
+        Water
+    }
+
+    public Magic magic;
     public int speed = 4;
     public int jumpForce = 500;
 
@@ -118,51 +129,86 @@ public class Player : MonoBehaviour
 
         grounded = Physics2D.OverlapCircle(feet.position, .3f, groundLayer);
 
-        /* Earth */
-        float vert = Input.GetAxis("Vertical") * Time.deltaTime;
-        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
-        if (vert != 0f && earthTouch) { stretch(earthTouch.gameObject, vert); }
-
-        /* Fire */
-        if (Input.GetMouseButtonDown(0)){
-            GameObject fire = Instantiate(fireBall);
-            fire.GetComponent<fire>().shoot(left);
-             fire.transform.position = firePos.transform.position; 
+        if (Input.GetKeyDown("1")) // Wind
+        {
+            magic = Magic.Wind;
+        }
+        else if (Input.GetKeyDown("2")) // Fire
+        {
+            magic = Magic.Fire;
+        }
+        else if (Input.GetKeyDown("3")) // Earth
+        {
+            magic = Magic.Earth;
+        }
+        else if (Input.GetKeyDown("4")) // Water
+        {
+            magic = Magic.Water;
         }
 
-        if(Input.GetMouseButtonDown(1)){
-            GameObject torch = Instantiate(lightBall);
-            torch.transform.position = lightPos.transform.position;
-            Destroy(torch, 10.0f);
+            /* Earth */
+            Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
+        if (magic == Magic.Earth)
+        {
+            float vert = Input.GetAxis("Vertical") * Time.deltaTime;
+            if (vert != 0f && earthTouch) { stretch(earthTouch.gameObject, vert); }
+        }
+
+        /* Fire */
+        if (magic == Magic.Fire)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                GameObject fire = Instantiate(fireBall);
+                fire.GetComponent<fire>().shoot(left);
+                fire.transform.position = firePos.transform.position;
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                GameObject torch = Instantiate(lightBall);
+                torch.transform.position = lightPos.transform.position;
+                Destroy(torch, 10.0f);
+            }
         }
 
         /* Wind */
-        if(Input.GetKeyDown (KeyCode.I)){
-            if(Wind_power){
-                GameObject newwind_blade = Instantiate(Wind_blade,wind_blade_pos.position,Quaternion.identity);
+        if (magic == Magic.Wind)
+        {
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                if (Wind_power)
+                {
+                    GameObject newwind_blade = Instantiate(Wind_blade, wind_blade_pos.position, Quaternion.identity);
+                }
             }
-        }
-        if(Input.GetKeyDown (KeyCode.O)){
-            if(Wind_power){
-                Wind_shield.GetComponent<Renderer>().enabled = true;
-                Wind_shield.GetComponent<Collider2D>().enabled = true;
-                Invoke("closewindshield", 2);
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                if (Wind_power)
+                {
+                    Wind_shield.GetComponent<Renderer>().enabled = true;
+                    Wind_shield.GetComponent<Collider2D>().enabled = true;
+                    Invoke("closewindshield", 2);
+                }
             }
         }
 
         /* Water */
-        //if (Input.GetButtonDown("Fire1"))
-        if(Input.GetKeyDown (KeyCode.R))
+        if (magic == Magic.Water)
         {
-            GameObject newBlast = Instantiate(icePrefab, castPos.position, Quaternion.identity);
-            newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x, 0));
-        }
+            //if (Input.GetButtonDown("Fire1"))
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                GameObject newBlast = Instantiate(icePrefab, castPos.position, Quaternion.identity);
+                newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x, 0));
+            }
 
-        //if (Input.GetButtonDown("Fire3"))
-        if(Input.GetKeyDown (KeyCode.E))
-        {
-            GameObject healing = Instantiate(healPrefab, feet.position, Quaternion.identity);
+            //if (Input.GetButtonDown("Fire3"))
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                GameObject healing = Instantiate(healPrefab, feet.position, Quaternion.identity);
 
+            }
         }
 
         // jump
