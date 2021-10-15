@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292514125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.777, y: 0.154, z: 0}
+  m_LocalPosition: {x: 0.925, y: 0.154, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4489533668827005210}
@@ -193,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1689120377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.777, y: 0.335, z: 0}
+  m_LocalPosition: {x: 0.993, y: 0.335, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4489533668827005210}
@@ -419,7 +419,7 @@ MonoBehaviour:
   fireBall: {fileID: 7025524892482740924, guid: 68571014e1fd48c498c4389579793d00, type: 3}
   left: 0
   lightPos: {fileID: 1689120378}
-  lightBall: {fileID: 9057293321721505384, guid: 6a5daa3db6be75f42a3e5c4fc7010370, type: 3}
+  lightBall: {fileID: 5680388090307094400, guid: ba5934d4be186234bbfe83bd35453c72, type: 3}
   Wind_blade: {fileID: 6394401709526515054, guid: 33cf24ac99fc9e647a9e02ce8432af83, type: 3}
   wind_blade_pos: {fileID: 1601567306}
   Wind_shield: {fileID: 1336355053}
