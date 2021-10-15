@@ -52,7 +52,7 @@ public class witch : MonoBehaviour{
             yield return new WaitForSeconds(1.5f);
             currentState = (State)Random.Range(0,3);
         }
-        while (health<25 & health>0){
+        while (health<=25 & health>0){
             yield return new WaitForSeconds(3);
             currentState = (State)Random.Range(4,8);
         }
@@ -66,10 +66,15 @@ public class witch : MonoBehaviour{
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Spell"))
+        if (other.tag == "Spell" || other.tag == "Spell")
         {
-            //health -= 1;
+            health -= 5;
+            print(health);
         }
+        if (health<=0){
+            Destroy(gameObject);
+        }
+
     }
 
     // Update is called once per frame
