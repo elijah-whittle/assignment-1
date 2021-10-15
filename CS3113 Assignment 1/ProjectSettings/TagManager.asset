@@ -46,6 +46,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 484775191
+    locked: 0
+  - name: Ground
+    uniqueID: 575849899
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -54,7 +60,4 @@ TagManager:
     locked: 0
   - name: Spells
     uniqueID: 3424067959
-    locked: 0
-  - name: Background
-    uniqueID: 484775191
     locked: 0

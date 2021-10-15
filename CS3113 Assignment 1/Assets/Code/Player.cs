@@ -87,6 +87,14 @@ public class Player : MonoBehaviour
 
     /*-------------------------------*/
 
+    /*---------- Animation ----------*/
+    public Animator anim;
+    public bool isGrounded;
+
+    /*-----------Player Stats--------*/
+    public int mp = 100;
+    public int hp = 100;
+    /*-------------------------------*/
 
     // Start is called before the first frame update
     void Start()
@@ -95,17 +103,27 @@ public class Player : MonoBehaviour
         //lightPos = GetComponent<Transform>();
         Wind_shield.GetComponent<Renderer>().enabled = false;
         Wind_shield.GetComponent<Collider2D>().enabled = false;
+        anim = gameObject.GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
         xSpeed = Input.GetAxis("Horizontal") * speed;
         _rigidbody.velocity = new Vector2(xSpeed, _rigidbody.velocity.y);
+        anim.SetFloat("Speed", xSpeed);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //if your hp hits
+        if (hp <= 0)
+        {
+
+        }
+
+        if (PublicVars.paused) { return; }
+
         // if you fall off the map
         if (transform.position.y < -10)
         {
@@ -125,6 +143,7 @@ public class Player : MonoBehaviour
         if ((xSpeed < 0 && transform.localScale.x > 0) || (xSpeed > 0 && transform.localScale.x < 0))
         {
             transform.localScale *= new Vector2(-1, 1);
+            anim.SetFloat("Speed", Mathf.Abs(xSpeed));
         }
 
         grounded = Physics2D.OverlapCircle(feet.position, .3f, groundLayer);
@@ -146,8 +165,8 @@ public class Player : MonoBehaviour
             magic = Magic.Water;
         }
 
-            /* Earth */
-            Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
+        /* Earth */
+        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
         if (magic == Magic.Earth)
         {
             float vert = Input.GetAxis("Vertical") * Time.deltaTime;
@@ -203,11 +222,20 @@ public class Player : MonoBehaviour
                 newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x, 0));
             }
 
+
             //if (Input.GetButtonDown("Fire3"))
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))        //heals the player 
             {
                 GameObject healing = Instantiate(healPrefab, feet.position, Quaternion.identity);
+                if (hp <= 85)
+                {
+                    hp += 15;
+                }
+                else if (hp > 85)
+                {
+                    hp = 100;
 
+                }
             }
         }
 
@@ -216,6 +244,7 @@ public class Player : MonoBehaviour
         {
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
             _rigidbody.AddForce(new Vector2(0, jumpForce));
+            anim.SetBool("IsJump", true);
         }
     }
 
@@ -225,6 +254,19 @@ public class Player : MonoBehaviour
     //private void OnTriggerEnter2D(Collider2D collision)
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (hp > 0)
+            {
+                if (hp <= 20)
+                {
+                    hp = 0;
+                }
+                else if (hp > 20) {
+                    hp -= 20;
+                }
+            }
+        }
         if (collision.gameObject.CompareTag("Spell"))
         {
             print("you got a spell");
@@ -244,6 +286,28 @@ public class Player : MonoBehaviour
         if(collision.tag == "wind_pill"){
             Wind_power = true;
         }
+        if (collision.tag == "mana")
+        {
+            if (mp >= 70)
+            {
+                mp = 100;
+            }
+            else
+            {
+                mp += 30;
+            }
+            Destroy(collision.gameObject);
+        }
 
+    }
+
+    public void StopJump()
+    {
+        anim.SetBool("IsJump", false);
+    }
+
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSeconds(15);
     }
 }
