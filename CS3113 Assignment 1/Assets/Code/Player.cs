@@ -95,6 +95,9 @@ public class Player : MonoBehaviour
     public int mp = 100;
     public int hp = 100;
     /*-------------------------------*/
+    public float max_cd = 3;
+    public float curr_cd = 3;
+    bool ifCD = false;
 
     // Start is called before the first frame update
     void Start()
@@ -119,7 +122,10 @@ public class Player : MonoBehaviour
         //if your hp hits
         if (hp <= 0)
         {
-
+            anim.SetBool("isAlive", false);
+            /*
+            if (SceneManager.GetActiveScene() == 
+            SceneManager.LoadScene("water");*/
         }
 
         // if you fall off the map
@@ -158,14 +164,16 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown("3")) // Earth
         {
             magic = Magic.Earth;
+
         }
         else if (Input.GetKeyDown("4")) // Water
         {
             magic = Magic.Water;
+
         }
 
-            /* Earth */
-            Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
+        /* Earth */
+        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
         if (magic == Magic.Earth)
         {
             float vert = Input.GetAxis("Vertical") * Time.deltaTime;
@@ -215,10 +223,24 @@ public class Player : MonoBehaviour
         if (magic == Magic.Water)
         {
             //if (Input.GetButtonDown("Fire1"))
-            if (Input.GetKeyDown(KeyCode.R))
+            if (ifCD == false)
             {
-                GameObject newBlast = Instantiate(icePrefab, castPos.position, Quaternion.identity);
-                newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x, 0));
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    GameObject newBlast = Instantiate(icePrefab, castPos.position, Quaternion.identity);
+                    newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x, 0));
+                    //StartCoroutine(Cooldown());
+                    ifCD = true;
+                    curr_cd = max_cd;
+                }
+            }
+            else
+            {
+                curr_cd -= Time.deltaTime;
+                if (curr_cd <= 0)
+                {
+                    ifCD = false;
+                }
             }
 
 
@@ -307,6 +329,6 @@ public class Player : MonoBehaviour
 
     IEnumerator Cooldown()
     {
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(5);
     }
 }
