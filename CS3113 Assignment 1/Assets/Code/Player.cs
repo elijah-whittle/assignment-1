@@ -128,6 +128,8 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("water");*/
         }
 
+        if (PublicVars.paused) { return; }
+
         // if you fall off the map
         if (transform.position.y < -10)
         {
@@ -151,7 +153,6 @@ public class Player : MonoBehaviour
         }
 
         grounded = Physics2D.OverlapCircle(feet.position, .3f, groundLayer);
-        //isGrounded = Physics2D.OverlapCircle(feet.position, .3f);
 
         if (Input.GetKeyDown("1")) // Wind
         {
