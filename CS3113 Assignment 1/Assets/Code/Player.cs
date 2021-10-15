@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
 
     /*------------ EARTH ------------*/
     public LayerMask earthLayer;
-    public Transform front;
     public bool touchingEarth = false;
 
     /*
@@ -121,13 +120,8 @@ public class Player : MonoBehaviour
 
         /* Earth */
         float vert = Input.GetAxis("Vertical") * Time.deltaTime;
-        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .3f, earthLayer);
-        Collider2D sideEarthTouch = Physics2D.OverlapCircle(front.position, .41f, earthLayer);
-        if (vert != 0f)
-        {
-            if (earthTouch) { stretch(earthTouch.gameObject, vert); }
-            if (sideEarthTouch) { stretch(sideEarthTouch.gameObject, vert); }
-        }
+        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
+        if (vert != 0f && earthTouch) { stretch(earthTouch.gameObject, vert); }
 
         /* Fire */
         if (Input.GetMouseButtonDown(0)){
