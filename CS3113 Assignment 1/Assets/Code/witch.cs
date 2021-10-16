@@ -7,6 +7,8 @@ public class witch : MonoBehaviour{
     public float health = 50;
     public GameObject Player;
     public GameObject Bullet1;
+    public GameObject Bullet2_left;
+    public GameObject Bullet2_right;
     public Transform bulletpos;
     public int castingForce = 50;
     public float Timebetween = 0.5f;
@@ -113,8 +115,13 @@ public class witch : MonoBehaviour{
                 _rigidbody.velocity = new Vector2(0.0f,0.0f);
                 _Timer+=Time.deltaTime;
                 if (_Timer>Timebetween){
-                    GameObject newBlast = Instantiate(Bullet1, bulletpos.position, Quaternion.identity);
-                    newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x*direction, 0));
+                    if(direction == 1){
+                        GameObject newBlast = Instantiate(Bullet2_right, bulletpos.position, Quaternion.identity);
+                        newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x*direction, 0));
+                    }else{
+                        GameObject newBlast = Instantiate(Bullet2_left, bulletpos.position, Quaternion.identity);
+                        newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x*direction, 0));
+                    }
                     _Timer = 0;
                 }
                 Attack2();
@@ -123,8 +130,13 @@ public class witch : MonoBehaviour{
                 _rigidbody.velocity = new Vector2(0.0f,0.0f);
                 _Timer+=Time.deltaTime;
                 if (_Timer>Timebetween){
-                    GameObject newBlast = Instantiate(Bullet1, bulletpos.position, Quaternion.identity);
-                    newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x*direction, 0));
+                    if(direction == 1){
+                        GameObject newBlast = Instantiate(Bullet2_right, bulletpos.position, Quaternion.identity);
+                        newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x*direction, 0));
+                    }else{
+                        GameObject newBlast = Instantiate(Bullet2_left, bulletpos.position, Quaternion.identity);
+                        newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x*direction, 0));
+                    }
                     _Timer = 0;
                 }
                 Attack2();

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blue_candle
+  m_Name: witchfireball
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,11 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 68cd03a91012f414c9b1ac6053033b17, type: 3}
+      value: {fileID: 21300000, guid: 143ac95453e5c5249bc8f9dd2c684c53, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 57551d6eeecac8542930f321b613bc6e, type: 3}
+      value: {fileID: 21300000, guid: 427ff08f6f8edfc4cba7d63b0afb34e3, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 34d59bbef7908604dad6e854573dc557, type: 3}
+      value: {fileID: 21300000, guid: 218892d76a65dcb48ac9f6ed68396b43, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,9 +44,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 68cd03a91012f414c9b1ac6053033b17, type: 3}
-    - {fileID: 21300000, guid: 57551d6eeecac8542930f321b613bc6e, type: 3}
-    - {fileID: 21300000, guid: 34d59bbef7908604dad6e854573dc557, type: 3}
+    - {fileID: 21300000, guid: 143ac95453e5c5249bc8f9dd2c684c53, type: 3}
+    - {fileID: 21300000, guid: 427ff08f6f8edfc4cba7d63b0afb34e3, type: 3}
+    - {fileID: 21300000, guid: 218892d76a65dcb48ac9f6ed68396b43, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
