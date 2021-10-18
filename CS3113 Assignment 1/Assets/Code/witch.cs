@@ -70,7 +70,7 @@ public class witch : MonoBehaviour{
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Spell" || other.tag == "Spell")
+        if (other.tag == "attack_spell" || other.tag == "Fire")
         {
             health -= 5;
             print(health);

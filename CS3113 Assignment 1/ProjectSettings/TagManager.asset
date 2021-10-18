@@ -14,6 +14,7 @@ TagManager:
   - wind_pill
   - witch_bullet
   - cat
+  - attack_spell
   layers:
   - Default
   - TransparentFX
