@@ -260,11 +260,12 @@ public class Player : MonoBehaviour
         }
 
         // jump
+        anim.SetBool("IsJump", grounded);
         if ((grounded || earthTouch) && Input.GetButtonDown("Jump"))
         {
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
             _rigidbody.AddForce(new Vector2(0, jumpForce));
-            anim.SetBool("IsJump", true);
+            //anim.SetBool("IsJump", true);
         }
     }
 
