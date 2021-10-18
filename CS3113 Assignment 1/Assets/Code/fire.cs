@@ -49,7 +49,7 @@ public class fire : MonoBehaviour
                 rigid2D.velocity = new Vector2(vel.x, -vel.y);
             }
         }
-        Destroy(gameObject, 2.0f);
+        Destroy(gameObject, 5.0f);
     }
     
 }
