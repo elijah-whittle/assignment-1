@@ -249,7 +249,7 @@ MonoBehaviour:
   damage: 20
   speed: 4
   rigid2D: {fileID: 5076399880580767388}
-  vel: {x: 5, y: -10}
+  vel: {x: 5, y: -5}
   spriteR: {fileID: 4162121317010478580}
   leftCheck: 0
 --- !u!114 &1659154682567496114

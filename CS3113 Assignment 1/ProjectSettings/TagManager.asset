@@ -12,6 +12,9 @@ TagManager:
   - Door
   - wind_bladepos
   - wind_pill
+  - witch_bullet
+  - cat
+  - attack_spell
   layers:
   - Default
   - TransparentFX
@@ -21,7 +24,7 @@ TagManager:
   - UI
   - Ground
   - Earth
-  - 
+  - Player
   - Front
   - Spells
   - 

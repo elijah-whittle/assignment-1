@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9099992545633724948}
   m_Layer: 0
   m_Name: windblade
-  m_TagString: Spell
+  m_TagString: attack_spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
