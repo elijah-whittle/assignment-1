@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 1884280294717909465}
   - component: {fileID: 5531695000351402665}
   - component: {fileID: -7577067198173586813}
-  - component: {fileID: -5286729539698080457}
   - component: {fileID: -4897152628255725485}
+  - component: {fileID: 4334763120724852560}
   m_Layer: 0
   m_Name: witchbullet
-  m_TagString: witch_bullet
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,19 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-5286729539698080457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235047178059124436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee91f1c2f2acf1e4481a224d4e777bfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dur: 3
 --- !u!58 &-4897152628255725485
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -135,3 +122,16 @@ CircleCollider2D:
   m_Offset: {x: -0.099999994, y: 0.054507405}
   serializedVersion: 2
   m_Radius: 0.18643722
+--- !u!114 &4334763120724852560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235047178059124436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c26a2b98cfca8144a71af2aba09ee52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dur: 3
