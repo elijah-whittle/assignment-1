@@ -6,28 +6,28 @@ public class witch_lifebarcontroler : MonoBehaviour
 {
     public GameObject Player;
     public GameObject witch;
-    private float x_distance;
+    public GameObject lifebarBG;
+    public GameObject lifebar;
+    public GameObject icon;
     private float y_distance;
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(true);
-        x_distance = Mathf.Abs(Player.GetComponent<Transform>().position.x - witch.GetComponent<Transform>().position.x);
+        lifebarBG.SetActive(false);
+        lifebar.SetActive(false);
+        icon.SetActive(false);
         y_distance = Mathf.Abs(Player.GetComponent<Transform>().position.y - witch.GetComponent<Transform>().position.y);
     }
 
     // Update is called once per frame
-    void FixUpdate()
+    void Update()
     {
-        x_distance = Mathf.Abs(Player.GetComponent<Transform>().position.x - witch.GetComponent<Transform>().position.x);
         y_distance = Mathf.Abs(Player.GetComponent<Transform>().position.y - witch.GetComponent<Transform>().position.y);
-        print(x_distance);
         bool ifexist = GameObject.Find("witch");
-        if (ifexist == false || x_distance>15 || y_distance>7){
-            gameObject.SetActive(false);
-        }
-        else{
-            gameObject.SetActive(true);
+        if (y_distance<=7f){
+            lifebarBG.SetActive(true);
+            lifebar.SetActive(true);
+            icon.SetActive(true);
         }
     }
 }

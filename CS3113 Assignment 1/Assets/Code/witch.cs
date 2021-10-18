@@ -84,6 +84,7 @@ public class witch : MonoBehaviour{
     // Update is called once per frame
     private void FixedUpdate(){
         lookplayer();
+        
         switch(currentState){
             case State.move:
                 _rigidbody.velocity = new Vector2(Speed*direction, 0);
