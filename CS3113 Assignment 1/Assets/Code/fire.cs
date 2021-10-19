@@ -16,7 +16,6 @@ public class fire : MonoBehaviour
 
     public bool leftCheck; 
 
-
     // Start is called before the first frame update
     public void shoot(bool left){
         if(left){
