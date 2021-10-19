@@ -92,6 +92,7 @@ public class Player : MonoBehaviour
     /*-----------Player Stats--------*/
     public int mp = 100;
     public int hp = 100;
+    public bool alive = true;
     /*-------------------------------*/
     public float max_cd = 3;
     public float curr_cd = 3;
@@ -120,11 +121,12 @@ public class Player : MonoBehaviour
         //if your hp hits
         if (hp <= 0)
         {
-            anim.SetBool("isAlive", false);
+            alive = false;
             /*
             if (SceneManager.GetActiveScene() == 
             SceneManager.LoadScene("water");*/
         }
+        anim.SetBool("isAlive", alive);
 
         if (PublicVars.paused) { return; }
 
