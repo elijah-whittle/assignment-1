@@ -21,13 +21,18 @@ public class witch_lifebarcontroler : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        y_distance = Mathf.Abs(Player.GetComponent<Transform>().position.y - witch.GetComponent<Transform>().position.y);
-        bool ifexist = GameObject.Find("witch");
-        if (y_distance<=7f){
-            lifebarBG.SetActive(true);
-            lifebar.SetActive(true);
-            icon.SetActive(true);
+    {   if(GameObject.Find("witch")==true){
+            y_distance = Mathf.Abs(Player.GetComponent<Transform>().position.y - witch.GetComponent<Transform>().position.y);
+            if (y_distance<=7f){
+                lifebarBG.SetActive(true);
+                lifebar.SetActive(true);
+                icon.SetActive(true);
+            }
+        }
+        else{
+            lifebarBG.SetActive(false);
+            lifebar.SetActive(false);
+            icon.SetActive(false);
         }
     }
 }

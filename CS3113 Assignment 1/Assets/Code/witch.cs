@@ -10,6 +10,7 @@ public class witch : MonoBehaviour{
     public GameObject Bullet2_left;
     public GameObject Bullet2_right;
     public Transform bulletpos;
+    public GameObject exit;
     public int castingForce = 50;
     public float Timebetween = 0.5f;
     Animator _animator;
@@ -76,6 +77,7 @@ public class witch : MonoBehaviour{
             print(health);
         }
         if (health<=0){
+            Destroy(exit);
             Destroy(gameObject);
         }
 
