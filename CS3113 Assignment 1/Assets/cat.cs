@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class cat : MonoBehaviour
 {
+    int health = 20;
     int speed = 3;
     int direction = -1;
 
@@ -75,8 +76,13 @@ public class cat : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Fire"){
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+            if(health >0){
+                health -= 5;
+                Destroy(other.gameObject);
+            }
+            else{
+                Destroy(gameObject);
+            }
         }
     }
 }
