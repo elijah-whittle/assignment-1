@@ -243,6 +243,8 @@ GameObject:
   - component: {fileID: 4489533668827005214}
   - component: {fileID: 4489533668827005211}
   - component: {fileID: 4489533668827005209}
+  - component: {fileID: 87118325}
+  - component: {fileID: 87118326}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Player
@@ -310,6 +312,7 @@ MonoBehaviour:
   isGrounded: 0
   mp: 100
   hp: 100
+  alive: 1
   max_cd: 3
   curr_cd: 3
 --- !u!61 &4489533668827005215
@@ -429,6 +432,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &87118325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4489533668827005213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c2d5ccd7745404b9c3a70655b1ad22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 4489533668827005213}
+  witch: {fileID: 0}
+  lifebarBG: {fileID: 0}
+  lifebar: {fileID: 0}
+  icon: {fileID: 0}
+--- !u!114 &87118326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4489533668827005213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea855d7ebebfbec4d83636c89b08de08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health_img: {fileID: 0}
+  mana_img: {fileID: 0}
 --- !u!1 &4489533669491947753
 GameObject:
   m_ObjectHideFlags: 0
