@@ -292,6 +292,11 @@ MonoBehaviour:
     m_Bits: 64
   feet: {fileID: 4489533669491947754}
   grounded: 0
+  itemPanels:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   earthLayer:
     serializedVersion: 2
     m_Bits: 128

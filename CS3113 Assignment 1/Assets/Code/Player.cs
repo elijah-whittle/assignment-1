@@ -28,7 +28,20 @@ public class Player : MonoBehaviour
     float xSpeed;
     Rigidbody2D _rigidbody;
 
-    bool[] spells = { false, false, false, false };
+    /*---------------- UI ----------------*/
+    public GameObject[] itemPanels;
+
+    void Select(int i)
+    {
+        for (int j = 0; j < itemPanels.Length; ++j)
+        {
+            itemPanels[j].GetComponent<ItemDisplay>().Deselect();
+        }
+        itemPanels[i].GetComponent<ItemDisplay>().Select();
+    }
+    /*------------------------------------*/
+
+
 
     /********** Paper Scraps ************/
     bool paperCollected = false;
@@ -101,11 +114,20 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PublicVars.currentLevel = SceneManager.GetActiveScene().buildIndex;
         _rigidbody = GetComponent<Rigidbody2D>();
         //lightPos = GetComponent<Transform>();
         Wind_shield.GetComponent<Renderer>().enabled = false;
         Wind_shield.GetComponent<Collider2D>().enabled = false;
         anim = gameObject.GetComponent<Animator>();
+
+        for (int i = 0; i < PublicVars.spells.Length; ++i)
+        {
+            if (PublicVars.spells[i])
+            {
+                itemPanels[i].GetComponent<ItemDisplay>().SetActive();
+            }
+        }
     }
 
     void FixedUpdate()
@@ -154,35 +176,39 @@ public class Player : MonoBehaviour
 
         grounded = Physics2D.OverlapCircle(feet.position, .3f, groundLayer);
 
-        if (Input.GetKeyDown("1")) // Wind
-        {
-            magic = Magic.Wind;
-        }
-        else if (Input.GetKeyDown("2")) // Fire
+        int windLoc = 3, fireLoc = 0, earthLoc = 1, waterLoc = 2;
+
+        if (Input.GetKeyDown("1")) // Fire
         {
             magic = Magic.Fire;
+            Select(fireLoc);
         }
-        else if (Input.GetKeyDown("3")) // Earth
+        else if (Input.GetKeyDown("2")) // Earth
         {
             magic = Magic.Earth;
-
+            Select(earthLoc);
         }
-        else if (Input.GetKeyDown("4")) // Water
+        else if (Input.GetKeyDown("3")) // Water
         {
             magic = Magic.Water;
-
+            Select(waterLoc);
+        }
+        else if (Input.GetKeyDown("4")) // Wind
+        {
+            magic = Magic.Wind;
+            Select(windLoc);
         }
 
         /* Earth */
         Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
-        if (magic == Magic.Earth)
+        if (magic == Magic.Earth && PublicVars.spells[earthLoc])
         {
             float vert = Input.GetAxis("Vertical") * Time.deltaTime;
             if (vert != 0f && earthTouch) { stretch(earthTouch.gameObject, vert); }
         }
 
         /* Fire */
-        if (magic == Magic.Fire)
+        if (magic == Magic.Fire && PublicVars.spells[fireLoc])
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -200,7 +226,7 @@ public class Player : MonoBehaviour
         }
 
         /* Wind */
-        if (magic == Magic.Wind)
+        if (magic == Magic.Wind && PublicVars.spells[windLoc])
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -221,7 +247,7 @@ public class Player : MonoBehaviour
         }
 
         /* Water */
-        if (magic == Magic.Water)
+        if (magic == Magic.Water && PublicVars.spells[waterLoc])
         {
             //if (Input.GetButtonDown("Fire1"))
             if (ifCD == false)
@@ -294,7 +320,8 @@ public class Player : MonoBehaviour
         {
             print("you got a spell");
             paperCollected = true;
-            spells[PublicVars.currentLevel] = true; // TODO after this week, change this line
+            PublicVars.spells[PublicVars.currentLevel] = true; // TODO after this week, change this line
+            itemPanels[PublicVars.currentLevel].GetComponent<ItemDisplay>().SetActive();
             Destroy(collision.gameObject);
         }
         if (paperCollected)
