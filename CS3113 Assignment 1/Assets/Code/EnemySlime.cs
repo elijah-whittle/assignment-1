@@ -27,6 +27,7 @@ public class EnemySlime : MonoBehaviour
     }
 
     State currentState;
+    SpriteRenderer rend;
     void Start()
     {
         //Vector2 currPos = transform.position;
@@ -34,6 +35,7 @@ public class EnemySlime : MonoBehaviour
         //float moveLeft = -transform.position.x;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        rend = GetComponent<SpriteRenderer>();
         //StartCoroutine(NewState());
     }
     /*
@@ -89,7 +91,14 @@ public class EnemySlime : MonoBehaviour
         }
         if (other.gameObject.CompareTag("wall"))
         {
-
+            if (dir == 1)
+            {
+                dir = -1;
+            }
+            else
+            {
+                dir = 1;
+            }
         }
     }
 
@@ -118,6 +127,15 @@ public class EnemySlime : MonoBehaviour
             dif = rb.position.x - backFeet.position.x;
         }
         //float dif = rb.position.x - frontFeet.position.x;
+        if (dir == 1)
+        {
+            rend.flipX = false;
+        }
+        else
+        {
+            rend.flipX = true;
+        }
+
         rb.velocity = new Vector2(Mathf.Abs(dif) * enemySpeed * dir, rb.velocity.y);
         
         if (health <= 0)
