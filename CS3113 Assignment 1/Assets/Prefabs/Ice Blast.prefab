@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8904241906750392043}
   m_Layer: 0
   m_Name: Ice Blast
-  m_TagString: attack_spell
+  m_TagString: ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

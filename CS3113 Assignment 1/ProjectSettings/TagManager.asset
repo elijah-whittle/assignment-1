@@ -15,6 +15,9 @@ TagManager:
   - witch_bullet
   - cat
   - attack_spell
+  - mana
+  - ice
+  - wall
   layers:
   - Default
   - TransparentFX
