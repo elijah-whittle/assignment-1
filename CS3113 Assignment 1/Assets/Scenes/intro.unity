@@ -2045,7 +2045,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Great job! Now, pick up the magic in front of you, and try to use it to
-    raise the earth wall in front of you
+    raise the earth wall
 --- !u!222 &1198942855
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2154,8 +2154,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: That's awesome. Now, try illuminating the view into the dark room with
-    a second spell
+  m_Text: That's awesome. Now, try illuminating the dark room with the fire spell
 --- !u!222 &1206311318
 CanvasRenderer:
   m_ObjectHideFlags: 0

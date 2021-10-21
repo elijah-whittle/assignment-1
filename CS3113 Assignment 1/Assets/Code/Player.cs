@@ -51,21 +51,6 @@ public class Player : MonoBehaviour
     /*------------ EARTH ------------*/
     public LayerMask earthLayer;
     public bool touchingEarth = false;
-
-    /*
-     *  stretches a chunk of earth in the y direction
-     *  inputs: 
-     *      earthChunk      the chunk to stretch
-     *      vert            how much to stretch it
-     */
-    void stretch(GameObject earthChunk, float vert)
-    {
-        SpriteRenderer _sprite = earthChunk.GetComponent<SpriteRenderer>();
-        earthChunk.transform.position = new Vector2(earthChunk.transform.position.x,
-                                                    earthChunk.transform.position.y + vert / 2);
-        _sprite.size = new Vector2(_sprite.size.x, _sprite.size.y + vert);
-
-    }
     /*-------------------------------*/
 
     /*------------ FIRE -------------*/
@@ -114,7 +99,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PublicVars.currentLevel = SceneManager.GetActiveScene().buildIndex;
+        //PublicVars.currentLevel = SceneManager.GetActiveScene().buildIndex;
         _rigidbody = GetComponent<Rigidbody2D>();
         //lightPos = GetComponent<Transform>();
         Wind_shield.GetComponent<Renderer>().enabled = false;
@@ -140,6 +125,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PublicVars.paused) { return; }
+
         //if your hp hits
         if (hp <= 0)
         {
@@ -149,8 +136,6 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("water");*/
         }
         anim.SetBool("isAlive", alive);
-
-        if (PublicVars.paused) { return; }
 
         // if you fall off the map
         if (transform.position.y < -10)
@@ -199,14 +184,6 @@ public class Player : MonoBehaviour
             Select(windLoc);
         }
 
-        /* Earth */
-        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
-        if (magic == Magic.Earth && PublicVars.spells[earthLoc])
-        {
-            float vert = Input.GetAxis("Vertical") * Time.deltaTime;
-            if (vert != 0f && earthTouch) { stretch(earthTouch.gameObject, vert); }
-        }
-
         /* Fire */
         if (magic == Magic.Fire && PublicVars.spells[fireLoc])
         {
@@ -225,24 +202,14 @@ public class Player : MonoBehaviour
             }
         }
 
-        /* Wind */
-        if (magic == Magic.Wind && PublicVars.spells[windLoc])
+        /* Earth */
+        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
+        if (magic == Magic.Earth && PublicVars.spells[earthLoc])
         {
-            if (Input.GetButtonDown("Fire1"))
+            float vert = Input.GetAxis("Vertical") * Time.deltaTime;
+            if (vert != 0f && earthTouch) 
             {
-                if (Wind_power)
-                {
-                    GameObject newwind_blade = Instantiate(Wind_blade, wind_blade_pos.position, Quaternion.identity);
-                }
-            }
-            if (Input.GetButtonDown("Fire2"))
-            {
-                if (Wind_power)
-                {
-                    Wind_shield.GetComponent<Renderer>().enabled = true;
-                    Wind_shield.GetComponent<Collider2D>().enabled = true;
-                    Invoke("closewindshield", 2);
-                }
+                earthTouch.gameObject.GetComponent<earth>().stretch(vert);
             }
         }
 
@@ -287,8 +254,30 @@ public class Player : MonoBehaviour
             }
         }
 
+
+        /* Wind */
+        if (magic == Magic.Wind && PublicVars.spells[windLoc])
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                if (Wind_power)
+                {
+                    GameObject newwind_blade = Instantiate(Wind_blade, wind_blade_pos.position, Quaternion.identity);
+                }
+            }
+            if (Input.GetButtonDown("Fire2"))
+            {
+                if (Wind_power)
+                {
+                    Wind_shield.GetComponent<Renderer>().enabled = true;
+                    Wind_shield.GetComponent<Collider2D>().enabled = true;
+                    Invoke("closewindshield", 2);
+                }
+            }
+        }
+
         // jump
-        anim.SetBool("IsJump", grounded);
+        anim.SetBool("IsJump", grounded || earthTouch);
         if ((grounded || earthTouch) && Input.GetButtonDown("Jump"))
         {
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
@@ -300,12 +289,12 @@ public class Player : MonoBehaviour
     /*
      * Spell/Door
      */
-    //private void OnTriggerEnter2D(Collider2D collision)
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (hp > 0)
+            if (Wind_shield.GetComponent<Collider2D>().enabled == false){
+                if (hp > 0)
             {
                 if (hp <= 20)
                 {
@@ -315,13 +304,14 @@ public class Player : MonoBehaviour
                     hp -= 20;
                 }
             }
+            }
         }
         if (collision.gameObject.CompareTag("Spell"))
         {
-            print("you got a spell");
+            SpellItem spell = collision.gameObject.GetComponent<SpellItem>();
             paperCollected = true;
-            PublicVars.spells[PublicVars.currentLevel] = true; // TODO after this week, change this line
-            itemPanels[PublicVars.currentLevel].GetComponent<ItemDisplay>().SetActive();
+            spell.AddSpell();
+            itemPanels[(int)spell.spell].GetComponent<ItemDisplay>().SetActive();
             Destroy(collision.gameObject);
         }
         if (paperCollected)
@@ -330,7 +320,7 @@ public class Player : MonoBehaviour
             {
                 PublicVars.currentLevel = (PublicVars.currentLevel + 1) % 4;
                 paperCollected = false;
-                SceneManager.LoadScene(PublicVars.levels[PublicVars.currentLevel]);
+                SceneManager.LoadScene(PublicVars.elements[PublicVars.currentLevel]);
             }
         }
         if(collision.tag == "wind_pill"){
