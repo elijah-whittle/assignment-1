@@ -320,10 +320,10 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Spell"))
         {
-            print("you got a spell");
+            SpellItem spell = collision.gameObject.GetComponent<SpellItem>();
             paperCollected = true;
-            PublicVars.spells[PublicVars.currentLevel] = true; // TODO after this week, change this line
-            itemPanels[PublicVars.currentLevel].GetComponent<ItemDisplay>().SetActive();
+            spell.AddSpell();
+            itemPanels[(int)spell.spell].GetComponent<ItemDisplay>().SetActive();
             Destroy(collision.gameObject);
         }
         if (paperCollected)
@@ -332,7 +332,7 @@ public class Player : MonoBehaviour
             {
                 PublicVars.currentLevel = (PublicVars.currentLevel + 1) % 4;
                 paperCollected = false;
-                SceneManager.LoadScene(PublicVars.levels[PublicVars.currentLevel]);
+                SceneManager.LoadScene(PublicVars.elements[PublicVars.currentLevel]);
             }
         }
         if(collision.tag == "wind_pill"){
