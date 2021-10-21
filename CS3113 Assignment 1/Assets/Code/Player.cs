@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PublicVars.currentLevel = SceneManager.GetActiveScene().buildIndex;
+        //PublicVars.currentLevel = SceneManager.GetActiveScene().buildIndex;
         _rigidbody = GetComponent<Rigidbody2D>();
         //lightPos = GetComponent<Transform>();
         Wind_shield.GetComponent<Renderer>().enabled = false;
@@ -140,6 +140,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PublicVars.paused) { return; }
+
         //if your hp hits
         if (hp <= 0)
         {
@@ -149,8 +151,6 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("water");*/
         }
         anim.SetBool("isAlive", alive);
-
-        if (PublicVars.paused) { return; }
 
         // if you fall off the map
         if (transform.position.y < -10)
@@ -199,14 +199,6 @@ public class Player : MonoBehaviour
             Select(windLoc);
         }
 
-        /* Earth */
-        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
-        if (magic == Magic.Earth && PublicVars.spells[earthLoc])
-        {
-            float vert = Input.GetAxis("Vertical") * Time.deltaTime;
-            if (vert != 0f && earthTouch) { stretch(earthTouch.gameObject, vert); }
-        }
-
         /* Fire */
         if (magic == Magic.Fire && PublicVars.spells[fireLoc])
         {
@@ -225,25 +217,12 @@ public class Player : MonoBehaviour
             }
         }
 
-        /* Wind */
-        if (magic == Magic.Wind && PublicVars.spells[windLoc])
+        /* Earth */
+        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
+        if (magic == Magic.Earth && PublicVars.spells[earthLoc])
         {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                if (Wind_power)
-                {
-                    GameObject newwind_blade = Instantiate(Wind_blade, wind_blade_pos.position, Quaternion.identity);
-                }
-            }
-            if (Input.GetButtonDown("Fire2"))
-            {
-                if (Wind_power)
-                {
-                    Wind_shield.GetComponent<Renderer>().enabled = true;
-                    Wind_shield.GetComponent<Collider2D>().enabled = true;
-                    Invoke("closewindshield", 2);
-                }
-            }
+            float vert = Input.GetAxis("Vertical") * Time.deltaTime;
+            if (vert != 0f && earthTouch) { stretch(earthTouch.gameObject, vert); }
         }
 
         /* Water */
@@ -283,6 +262,28 @@ public class Player : MonoBehaviour
                 {
                     hp = 100;
 
+                }
+            }
+        }
+
+
+        /* Wind */
+        if (magic == Magic.Wind && PublicVars.spells[windLoc])
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                if (Wind_power)
+                {
+                    GameObject newwind_blade = Instantiate(Wind_blade, wind_blade_pos.position, Quaternion.identity);
+                }
+            }
+            if (Input.GetButtonDown("Fire2"))
+            {
+                if (Wind_power)
+                {
+                    Wind_shield.GetComponent<Renderer>().enabled = true;
+                    Wind_shield.GetComponent<Collider2D>().enabled = true;
+                    Invoke("closewindshield", 2);
                 }
             }
         }
