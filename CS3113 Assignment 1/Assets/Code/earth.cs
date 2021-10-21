@@ -8,6 +8,7 @@ public class earth : MonoBehaviour
 
     float bottomY;
 
+    public int stretchSpeed = 1;
     public float minHeight;
     public float maxHeight;
 
@@ -33,4 +34,19 @@ public class earth : MonoBehaviour
             transform.localPosition = new Vector3(transform.localPosition.x, bottomY + minHeight / 2, transform.localPosition.z);
         }
     }
+
+    /*
+     *  stretches a chunk of earth in the y direction
+     *  inputs: 
+     *      earthChunk      the chunk to stretch
+     *      vert            how much to stretch it
+     */
+    public void stretch(float vert)
+    {
+        transform.position = new Vector2(transform.position.x,
+                                         transform.position.y + vert * stretchSpeed / 2);
+        _sprite.size = new Vector2(_sprite.size.x, _sprite.size.y + vert * stretchSpeed);
+
+    }
+
 }

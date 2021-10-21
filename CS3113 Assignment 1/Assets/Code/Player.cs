@@ -51,21 +51,6 @@ public class Player : MonoBehaviour
     /*------------ EARTH ------------*/
     public LayerMask earthLayer;
     public bool touchingEarth = false;
-
-    /*
-     *  stretches a chunk of earth in the y direction
-     *  inputs: 
-     *      earthChunk      the chunk to stretch
-     *      vert            how much to stretch it
-     */
-    void stretch(GameObject earthChunk, float vert)
-    {
-        SpriteRenderer _sprite = earthChunk.GetComponent<SpriteRenderer>();
-        earthChunk.transform.position = new Vector2(earthChunk.transform.position.x,
-                                                    earthChunk.transform.position.y + vert / 2);
-        _sprite.size = new Vector2(_sprite.size.x, _sprite.size.y + vert);
-
-    }
     /*-------------------------------*/
 
     /*------------ FIRE -------------*/
@@ -222,7 +207,10 @@ public class Player : MonoBehaviour
         if (magic == Magic.Earth && PublicVars.spells[earthLoc])
         {
             float vert = Input.GetAxis("Vertical") * Time.deltaTime;
-            if (vert != 0f && earthTouch) { stretch(earthTouch.gameObject, vert); }
+            if (vert != 0f && earthTouch) 
+            {
+                earthTouch.gameObject.GetComponent<earth>().stretch(vert);
+            }
         }
 
         /* Water */
@@ -289,7 +277,7 @@ public class Player : MonoBehaviour
         }
 
         // jump
-        anim.SetBool("IsJump", grounded);
+        anim.SetBool("IsJump", grounded || earthTouch);
         if ((grounded || earthTouch) && Input.GetButtonDown("Jump"))
         {
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
@@ -301,7 +289,6 @@ public class Player : MonoBehaviour
     /*
      * Spell/Door
      */
-    //private void OnTriggerEnter2D(Collider2D collision)
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
