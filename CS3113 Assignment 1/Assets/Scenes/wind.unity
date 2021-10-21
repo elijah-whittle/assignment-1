@@ -748,7 +748,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150980908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -71.6, y: 29.36, z: -10}
+  m_LocalPosition: {x: -59.4, y: 31.16, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1531207818}
@@ -1281,11 +1281,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4489533668827005210, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -71.6
+      value: -59.4
       objectReference: {fileID: 0}
     - target: {fileID: 4489533668827005210, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.6
+      value: 29.4
       objectReference: {fileID: 0}
     - target: {fileID: 4489533668827005210, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2256,7 +2256,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -71.6, y: 29.36, z: -10}
+  m_LocalPosition: {x: -59.4, y: 31.16, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4554,7 +4554,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Witch
+  m_Text: 'Circe
 
 '
 --- !u!222 &1028487320
@@ -8819,11 +8819,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8638908005327991779, guid: af921df695fe06d4d995068a7ebacfbb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -60.8
+      value: -53.6
       objectReference: {fileID: 0}
     - target: {fileID: 8638908005327991779, guid: af921df695fe06d4d995068a7ebacfbb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.4
+      value: 29.2
       objectReference: {fileID: 0}
     - target: {fileID: 8638908005327991779, guid: af921df695fe06d4d995068a7ebacfbb, type: 3}
       propertyPath: m_LocalPosition.z
