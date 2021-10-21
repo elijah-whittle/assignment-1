@@ -579,7 +579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.04464286, y: -0.04464286, z: -10}
+  m_LocalPosition: {x: -34.47, y: 0.95999974, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1602,26 +1602,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed5157d559fff6a4f8a305e793056fc8, type: 3}
---- !u!1 &1089262439 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1380837874, guid: ed5157d559fff6a4f8a305e793056fc8, type: 3}
-  m_PrefabInstance: {fileID: 1089262438}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1089262440 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 114340240, guid: ed5157d559fff6a4f8a305e793056fc8, type: 3}
-  m_PrefabInstance: {fileID: 1089262438}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1089262441 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 344876556, guid: ed5157d559fff6a4f8a305e793056fc8, type: 3}
-  m_PrefabInstance: {fileID: 1089262438}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1089262442 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1375082463, guid: ed5157d559fff6a4f8a305e793056fc8, type: 3}
-  m_PrefabInstance: {fileID: 1089262438}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1138786369
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,22 +1982,6 @@ PrefabInstance:
       propertyPath: health_img
       value: 
       objectReference: {fileID: 1658720145}
-    - target: {fileID: 4489533668827005208, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
-      propertyPath: itemPanels.Array.data[0]
-      value: 
-      objectReference: {fileID: 1089262442}
-    - target: {fileID: 4489533668827005208, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
-      propertyPath: itemPanels.Array.data[1]
-      value: 
-      objectReference: {fileID: 1089262441}
-    - target: {fileID: 4489533668827005208, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
-      propertyPath: itemPanels.Array.data[2]
-      value: 
-      objectReference: {fileID: 1089262440}
-    - target: {fileID: 4489533668827005208, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
-      propertyPath: itemPanels.Array.data[3]
-      value: 
-      objectReference: {fileID: 1089262439}
     - target: {fileID: 4489533668827005210, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
       propertyPath: m_RootOrder
       value: 9
