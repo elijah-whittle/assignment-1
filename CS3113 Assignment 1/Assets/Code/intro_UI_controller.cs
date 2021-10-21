@@ -12,6 +12,7 @@ public class intro_UI_controller : MonoBehaviour
     public Transform master_earth;
     public Transform master_light;
     public Transform master_attack;
+    public Transform final_pos;
     private float Player_trans;
     private int stage = 0;
     void Start()
@@ -22,6 +23,7 @@ public class intro_UI_controller : MonoBehaviour
         earth_instruction.SetActive(false);
         light_instruction.SetActive(false);
         attack_instruction.SetActive(false);
+        print(stage);
 
     }
 
@@ -32,22 +34,32 @@ public class intro_UI_controller : MonoBehaviour
             if(Player_trans>=master_earth.position.x){
                 move_instruction.SetActive(false);
                 earth_instruction.SetActive(true);
-                stage+=1;
+                stage=1;
+                print(stage);
             }
         }
-        if (stage == 1){
+        else if (stage == 1){
             if(Player_trans>=master_light.position.x){
                 earth_instruction.SetActive(false);
                 light_instruction.SetActive(true);
-                stage+=1;
+                stage=2;
+                print(stage);
             }
         }
-        if (stage == 2){
+        else if (stage == 2){
             if(Player_trans>=master_attack.position.x){
                 light_instruction.SetActive(false);
                 attack_instruction.SetActive(true);
-                stage+=1;
+                stage=3;
+                print(stage);
             }
         }
+        else if (stage == 3){
+                move_instruction.SetActive(true);
+                attack_instruction.SetActive(false);
+                stage=4;
+                print(stage);
+        }
+        
     }
 }
