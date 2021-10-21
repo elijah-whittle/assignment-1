@@ -305,7 +305,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (hp > 0)
+            if (Wind_shield.GetComponent<Collider2D>().enabled == false){
+                if (hp > 0)
             {
                 if (hp <= 20)
                 {
@@ -314,6 +315,7 @@ public class Player : MonoBehaviour
                 else if (hp > 20) {
                     hp -= 20;
                 }
+            }
             }
         }
         if (collision.gameObject.CompareTag("Spell"))
