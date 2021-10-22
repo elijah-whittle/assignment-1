@@ -100,8 +100,8 @@ public class Player : MonoBehaviour
     public float curr_cd_heal = 5;
     bool ifCD_heal = false;
 
-    public float max_respawn_time = 3f;
-    public float curr_respawn_time = 3f;
+    public float max_respawn_time = 4.5f;
+    public float curr_respawn_time = 4.5f;
     bool if_respawn = false;
     /*-------------------------------*/
     //public AudioManager audio_man;
@@ -152,6 +152,7 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         hp = 100;
         mp = 100;
+        speed = 4;
         alive = true;
     }
 
@@ -173,15 +174,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (PublicVars.paused) { return; }
-        if (hp <= 0)
-        {
-            //Death.Play();
-        }
 
         //if your hp hits
         if (hp <= 0)
         {
             alive = false;
+            speed = 0;
             //Death.Play();
             if (alive == false)
             {

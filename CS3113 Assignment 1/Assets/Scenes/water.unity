@@ -3037,8 +3037,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 2
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1862875957, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
 --- !u!114 &1401510298 stripped
 MonoBehaviour:
