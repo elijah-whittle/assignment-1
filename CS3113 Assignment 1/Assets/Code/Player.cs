@@ -122,6 +122,24 @@ public class Player : MonoBehaviour
         anim.SetFloat("Speed", xSpeed);
     }
 
+    void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        hp = 100;
+        mp = 100;
+        alive = true;
+    }
+
+    IEnumerator Countdown(int time)
+    {
+        int count = time;
+        while (count > 0)
+        {
+            yield return new WaitForSeconds(1);
+            count--;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -131,6 +149,9 @@ public class Player : MonoBehaviour
         if (hp <= 0)
         {
             alive = false;
+            anim.SetBool("isAlive", alive);
+            StartCoroutine(Countdown(5));
+            //ResetScene();
             /*
             if (SceneManager.GetActiveScene() == 
             SceneManager.LoadScene("water");*/

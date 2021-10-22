@@ -223,10 +223,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 63046282}
     - target: {fileID: 4489533668827005208, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
-      propertyPath: itemPanels.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489533668827005208, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
       propertyPath: itemPanels.Array.data[0]
       value: 
       objectReference: {fileID: 1375082463}
@@ -869,6 +865,10 @@ PrefabInstance:
     - target: {fileID: 159115189534938597, guid: 8317d59127a80c144a478ee813bb94cc, type: 3}
       propertyPath: m_Name
       value: Ground (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 159115189534938597, guid: 8317d59127a80c144a478ee813bb94cc, type: 3}
+      propertyPath: m_TagString
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 4113972518450525003, guid: 8317d59127a80c144a478ee813bb94cc, type: 3}
       propertyPath: m_RootOrder
