@@ -9,6 +9,11 @@ public class cat : MonoBehaviour
     int direction = -1;
 
     public LayerMask playerLayer;
+    bool feet = true;
+    public LayerMask groundLayer;
+
+    public Transform frontfeet;
+
     Rigidbody2D rb2d; 
     public SpriteRenderer spriteR;
 
@@ -52,17 +57,44 @@ public class cat : MonoBehaviour
             currentState = State.Walk;
         }
 
-        //transform.localScale = new Vector2(direction, 1);
+        feet = Physics2D.OverlapCircle(frontfeet.position, .3f, groundLayer);
+
+        if(!feet){
+            if(direction == 1){
+                direction = -1;
+                rb2d.velocity= new Vector2(speed * direction, rb2d.velocity.y);
+                //break;
+            }
+            else{
+                direction = 1;
+                rb2d.velocity= new Vector2(speed * direction, rb2d.velocity.y);
+                //break;
+            }
+        }
 
         switch (currentState){
             case State.Walk:
+                
                 if(direction == 1){
                     spriteR.flipX = true;
                 }
                 else{
                     spriteR.flipX = false;
                 }
-                rb2d.velocity= new Vector2(speed * direction, rb2d.velocity.y);
+                if(feet){
+                    rb2d.velocity= new Vector2(speed * direction, rb2d.velocity.y);
+                }else{
+                    if(direction == 1){
+                        direction = -1;
+                        rb2d.velocity= new Vector2(speed * direction, rb2d.velocity.y);
+                        break;
+                    }
+                    else{
+                        direction = 1;
+                        rb2d.velocity= new Vector2(speed * direction, rb2d.velocity.y);
+                        break;
+                    }
+                }
                 catAni.SetFloat("Speed", 1);
                 break;
 

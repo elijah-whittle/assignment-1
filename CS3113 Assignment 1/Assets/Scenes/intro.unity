@@ -231,9 +231,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1134802897}
-  - {fileID: 1863938654}
-  - {fileID: 486368561}
   - {fileID: 1553498273}
+  - {fileID: 486368561}
+  - {fileID: 1863938654}
   - {fileID: 1601589457}
   - {fileID: 738020327}
   - {fileID: 526844256}
@@ -4011,7 +4011,7 @@ GameObject:
   - component: {fileID: 1914130472}
   m_Layer: 6
   m_Name: ground (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

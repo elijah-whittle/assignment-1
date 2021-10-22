@@ -46,6 +46,10 @@ public class fire : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        if(other.gameObject.tag == "Enemy"){
+            Destroy(gameObject);
+        }
+        
         if(other.gameObject.tag == "Ground"){
             if(leftCheck == true){
                 rigid2D.velocity = new Vector2(-vel.x, -vel.y);
@@ -59,7 +63,6 @@ public class fire : MonoBehaviour
         if(jumps > 3){
             Destroy(gameObject);
         }
-        
         Destroy(gameObject, 5.0f);
     }
     

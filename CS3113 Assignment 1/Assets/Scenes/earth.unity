@@ -450,6 +450,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: earth (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3984699798887086496, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 3984699798887086498, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 23.50594

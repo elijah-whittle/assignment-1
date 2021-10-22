@@ -14,6 +14,8 @@ public class slime : MonoBehaviour
     Rigidbody2D rb2d;
     SpriteRenderer spriteR;
     Animator slimeAni;
+
+    
     enum State{
         Idle, 
         Walk, 
@@ -24,6 +26,10 @@ public class slime : MonoBehaviour
     public bool grounded = false;
     public Transform feet;
     public LayerMask groundLayer;
+
+
+    bool onGround = true;
+    public Transform frontfeet;
 
     void Start()
     {
@@ -43,7 +49,7 @@ public class slime : MonoBehaviour
     private void FixedUpdate()
     {
 
-        grounded = Physics2D.OverlapCircle(feet.position, .3f, groundLayer);
+        grounded = Physics2D.OverlapCircle(feet.position, .1f, groundLayer);
 
         Collider2D[] players = Physics2D.OverlapCircleAll(transform.position, 3, playerLayer);
         if(players.Length > 0){
@@ -57,6 +63,21 @@ public class slime : MonoBehaviour
                 direction = -1;
             }
             currentState = State.Jump;
+        }
+
+        onGround = Physics2D.OverlapCircle(frontfeet.position, 1f, groundLayer);
+
+        if(!onGround){
+            if(direction == 1){
+                direction = -1;
+                rb2d.velocity= new Vector2(speed * direction, rb2d.velocity.y);
+                //break;
+            }
+            else{
+                direction = 1;
+                rb2d.velocity= new Vector2(speed * direction, rb2d.velocity.y);
+                //break;
+            }
         }
 
         switch(currentState){

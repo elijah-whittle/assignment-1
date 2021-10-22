@@ -100,6 +100,7 @@ public class EnemySlime : MonoBehaviour
         if (other.gameObject.CompareTag("Fire"))
         {
             health -= 2;
+            Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("wall"))
         {
@@ -112,6 +113,7 @@ public class EnemySlime : MonoBehaviour
                 dir = 1;
             }
         }
+        
     }
 
     // Update is called once per frame
