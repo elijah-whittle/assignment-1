@@ -75,7 +75,7 @@ public class cat : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Fire"){
+        if(other.gameObject.tag == "Fire" || other.gameObject.tag == "ice"|| other.gameObject.tag == "attack_spell"){
             if(health >0){
                 health -= 5;
                 Destroy(other.gameObject);
