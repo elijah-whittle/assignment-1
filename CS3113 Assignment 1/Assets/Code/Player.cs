@@ -172,6 +172,10 @@ public class Player : MonoBehaviour
         //if your hp hits
         if (hp <= 0)
         {
+            if (alive == true)
+            {
+                anim.SetBool("isAlive", alive);
+            }
             alive = false;
 
             //anim.SetBool("isAlive", alive);
@@ -186,6 +190,14 @@ public class Player : MonoBehaviour
         {
             transform.position = Vector2.zero;
             _rigidbody.velocity = Vector2.zero;
+            if (hp <= 10)
+            {
+                hp = 0;
+            }
+            else if (hp > 85)
+            {
+                hp -= 10;
+            }
         }
 
         if (xSpeed < 0)
@@ -380,17 +392,18 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (Wind_shield.GetComponent<Collider2D>().enabled == false){
-                if (hp > 0)
+            if (Wind_shield.GetComponent<Collider2D>().enabled == false)
             {
-                if (hp <= 20)
-                {
-                    hp = 0;
+                if (hp > 0)
+                {   
+                    if (hp <= 20)
+                    {
+                        hp = 0;
+                    }
+                    else if (hp > 20) {
+                        hp -= 20;
+                    }
                 }
-                else if (hp > 20) {
-                    hp -= 20;
-                }
-            }
             }
         }
         if (collision.gameObject.CompareTag("Spell"))
