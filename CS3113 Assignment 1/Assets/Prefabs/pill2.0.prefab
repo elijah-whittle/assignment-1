@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 8638908005327991779}
   - component: {fileID: 8638908005327991776}
   - component: {fileID: 8638908005327991777}
-  - component: {fileID: 8638908005327991782}
+  - component: {fileID: 8638908005659621535}
   m_Layer: 0
   m_Name: pill2.0
-  m_TagString: wind_pill
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &8638908005327991782
+--- !u!114 &8638908005659621535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8638908005327991783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d31deef1a2766e846bf63b60a9c084be, type: 3}
+  m_Script: {fileID: 11500000, guid: 89458147619c4fb45990bb7197141d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spell: 3
