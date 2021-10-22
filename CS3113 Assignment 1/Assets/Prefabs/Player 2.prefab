@@ -1480,7 +1480,7 @@ MonoBehaviour:
   TorchSound: {fileID: 1849196769}
   HealingSound: {fileID: 42811423}
   WindSound: {fileID: 1530585778}
-  WindShieldSound: {fileID: 0}
+  WindShieldSound: {fileID: 1530585778}
   IceSound: {fileID: 2044025344}
   walk: {fileID: 0}
 --- !u!61 &4489533668827005215

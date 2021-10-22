@@ -727,7 +727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262014056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.394524, y: 16.069738, z: 1}
+  m_LocalPosition: {x: 27.394524, y: 16.069738, z: 5}
   m_LocalScale: {x: 200, y: 50, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2719,6 +2719,14 @@ MonoBehaviour:
   master_light: {fileID: 1998438307}
   master_attack: {fileID: 1201050552}
   final_pos: {fileID: 1626797019}
+--- !u!81 &1276737055
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276737047}
+  m_Enabled: 1
 --- !u!1 &1319740685
 GameObject:
   m_ObjectHideFlags: 0
@@ -4869,11 +4877,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8651305538840380406, guid: cccc80b7cb1f31845ab35007993e6d08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 58.07
+      value: 57.5
       objectReference: {fileID: 0}
     - target: {fileID: 8651305538840380406, guid: cccc80b7cb1f31845ab35007993e6d08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.53
+      value: 10.6
       objectReference: {fileID: 0}
     - target: {fileID: 8651305538840380406, guid: cccc80b7cb1f31845ab35007993e6d08, type: 3}
       propertyPath: m_LocalPosition.z
