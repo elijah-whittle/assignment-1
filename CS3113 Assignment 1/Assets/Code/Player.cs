@@ -92,8 +92,8 @@ public class Player : MonoBehaviour
     public int hp = 100;
     public bool alive = true;
     /*-------------------------------*/
-    public float max_cd = 3;
-    public float curr_cd = 3;
+    public float max_cd = 2;
+    public float curr_cd = 2;
     bool ifCD = false;
 
     public float max_cd_heal = 5;
@@ -178,14 +178,11 @@ public class Player : MonoBehaviour
 
             //Cooldown(3);
             ResetScene();
-            /*
-            if (SceneManager.GetActiveScene() == 
-            SceneManager.LoadScene("water");*/
         }
         anim.SetBool("isAlive", alive);
 
         // if you fall off the map
-        if (transform.position.y < -10)
+        if (transform.position.y < -15)
         {
             transform.position = Vector2.zero;
             _rigidbody.velocity = Vector2.zero;

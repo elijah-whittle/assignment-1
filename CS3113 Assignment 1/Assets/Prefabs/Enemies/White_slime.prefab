@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 5845323947693924299}
   - component: {fileID: 5845323947693924298}
   - component: {fileID: 5845323947693924301}
-  - component: {fileID: 5845323947693924300}
   - component: {fileID: 5845323947693924297}
+  - component: {fileID: 5845323947564471946}
   m_Layer: 0
   m_Name: White_slime
   m_TagString: Enemy
@@ -156,7 +156,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 2360950213923668242, guid: 2908ebb654ec3834e97ad38a07a9d765, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.25, y: 1}
@@ -165,34 +165,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5845323947693924300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5845323947693924303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88c830917139c9d4e844c2dcd15b29ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  frontFeet: {fileID: 5845323948294464740}
-  backFeet: {fileID: 5845323947238240052}
-  grounded: 0
-  grounded2: 0
-  enemySpeed: 7
-  sightRange: 3
-  dir: -1
-  health: 9999999
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  max_cd: 5
-  curr_cd: 5
 --- !u!95 &5845323947693924297
 Animator:
   serializedVersion: 3
@@ -212,6 +184,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5845323947564471946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5845323947693924303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b8d74a468a5824a928358e02426668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  frontFeet: {fileID: 5845323948294464740}
+  backFeet: {fileID: 5845323947238240052}
+  grounded: 0
+  grounded2: 0
+  enemySpeed: 7
+  dir: -1
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  max_cd: 3
+  curr_cd: 3
+  max_edge_timer: 0.05
+  curr_time: 0.05
 --- !u!1 &5845323948294464743
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,7 +31,10 @@ public class EnemySlime : MonoBehaviour
     //----slow cooldown----//
     public float max_cd = 3;
     public float curr_cd = 3;
-
+    //---------------------//
+    public float max_edge_timer = 0.05f;
+    public float curr_time = 0.05f;
+    bool ifturn = true;
     void Start()
     {
         //Vector2 currPos = transform.position;
@@ -117,25 +120,45 @@ public class EnemySlime : MonoBehaviour
         
     }
 
+
     // Update is called once per frame
     void Update()
     {
         grounded = Physics2D.OverlapCircle(frontFeet.position, .3f, groundLayer);
         grounded2 = Physics2D.OverlapCircle(backFeet.position, .3f, groundLayer);
-
+        
         if (!grounded || !grounded2)
         {
-            if (dir == 1)
+            if (ifturn)
             {
-                dir = -1;
+                if (dir == 1)
+                {
+                    dir = -1;
+                }
+                else
+                {
+                    dir = 1;
+                }
+                //rb.velocity = new Vector2(2 * enemySpeed * dir, rb.velocity.y);
+                ifturn = false;
             }
-            else
-            {           
-                dir = 1;
-            }
-            rb.velocity = new Vector2(Mathf.Abs(dif) * enemySpeed * dir, rb.velocity.y);
+        }/*
+        if (!grounded)
+        {
+            dir = 1;
         }
+        else if (!grounded2)
+        {
+            dir = -1;
+        }*/
 
+        curr_time -= Time.deltaTime;
+        if (curr_time <= 0)
+        {
+            ifturn = true;
+            curr_time = max_edge_timer;
+        }
+        /*
         if (!grounded)
         {
             dif = rb.position.x - frontFeet.position.x;
@@ -143,7 +166,7 @@ public class EnemySlime : MonoBehaviour
         else if (!grounded2)
         {
             dif = rb.position.x - backFeet.position.x;
-        }
+        }*/
 
         //float dif = rb.position.x - frontFeet.position.x;
 
