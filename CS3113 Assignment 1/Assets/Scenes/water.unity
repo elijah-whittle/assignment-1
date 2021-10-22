@@ -659,14 +659,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 975211435, guid: 3b33c8c2655fa754b9f26bc6da4d69f9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000556224, guid: 3b33c8c2655fa754b9f26bc6da4d69f9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2326742128636055883, guid: 3b33c8c2655fa754b9f26bc6da4d69f9, type: 3}
       propertyPath: m_Name
       value: Enemy_Slime
@@ -991,10 +983,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1401510298}
     - target: {fileID: 4489533668827005208, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
-      propertyPath: magic
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489533668827005208, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
       propertyPath: itemPanels.Array.data[0]
       value: 
       objectReference: {fileID: 1308333129}
@@ -1057,10 +1045,6 @@ PrefabInstance:
     - target: {fileID: 4489533668827005213, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
       propertyPath: m_Name
       value: Player 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489533668827005213, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
