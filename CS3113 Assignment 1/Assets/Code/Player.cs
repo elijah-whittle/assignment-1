@@ -99,6 +99,10 @@ public class Player : MonoBehaviour
     public float max_cd_heal = 5;
     public float curr_cd_heal = 5;
     bool ifCD_heal = false;
+
+    public float max_respawn_time = 3f;
+    public float curr_respawn_time = 3f;
+    bool if_respawn = false;
     /*-------------------------------*/
     //public AudioManager audio_man;
     public AudioSource jump;
@@ -109,7 +113,7 @@ public class Player : MonoBehaviour
     public AudioSource WindSound;
     public AudioSource WindShieldSound;
     public AudioSource IceSound;
-    public AudioSource walk;
+    public AudioSource Death;
 
     // Start is called before the first frame update
     void Start()
@@ -144,6 +148,7 @@ public class Player : MonoBehaviour
 
     void ResetScene()
     {
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         hp = 100;
         mp = 100;
@@ -168,20 +173,39 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (PublicVars.paused) { return; }
+        if (hp <= 0)
+        {
+            //Death.Play();
+        }
 
         //if your hp hits
         if (hp <= 0)
         {
-            if (alive == true)
-            {
-                anim.SetBool("isAlive", alive);
-            }
             alive = false;
-
+            //Death.Play();
+            if (alive == false)
+            {
+                if (if_respawn == true)
+                {
+                    if_respawn = false;
+                    ResetScene();
+                }
+                else
+                {
+                    anim.SetBool("isAlive", alive);
+                    
+                    curr_respawn_time -= Time.deltaTime;
+                    if (curr_respawn_time <= 0)
+                    {
+                        if_respawn = true;
+                    }
+                }
+                
+            }
             //anim.SetBool("isAlive", alive);
 
             //Cooldown(3);
-            ResetScene();
+            //ResetScene();
         }
         anim.SetBool("isAlive", alive);
 
@@ -398,6 +422,7 @@ public class Player : MonoBehaviour
                 {   
                     if (hp <= 20)
                     {
+                        Death.Play();
                         hp = 0;
                     }
                     else if (hp > 20) {
