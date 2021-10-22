@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &292514126
 Transform:
@@ -153,7 +153,7 @@ GameObject:
   m_TagString: lightPos
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1689120378
 Transform:
@@ -303,7 +303,7 @@ MonoBehaviour:
     m_Bits: 128
   touchingEarth: 0
   firePos: {fileID: 292514126}
-  fireBall: {fileID: 7025524892482740924, guid: 68571014e1fd48c498c4389579793d00, type: 3}
+  fireBall: {fileID: 6729423377796604294, guid: e6d4ee841ddd49d458e1e9ad719f6adb, type: 3}
   left: 0
   lightPos: {fileID: 1689120378}
   lightBall: {fileID: 5680388090307094400, guid: ba5934d4be186234bbfe83bd35453c72, type: 3}
