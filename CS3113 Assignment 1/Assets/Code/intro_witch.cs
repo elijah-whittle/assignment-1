@@ -23,7 +23,7 @@ public class intro_witch : MonoBehaviour
             for(int i = 0; i < PublicVars.spells.Length; ++i){
                 PublicVars.spells[i] = false;
             }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }
