@@ -345,7 +345,7 @@ public class Player : MonoBehaviour
                 {
                     if (Wind_power)
                     {
-                        WindSound.Play(4);
+                        WindSound.Play();
                         GameObject newwind_blade = Instantiate(Wind_blade, wind_blade_pos.position, Quaternion.identity);
                         mg_deduct();
                     }
