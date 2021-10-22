@@ -98,7 +98,7 @@ public class slime : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Fire"){
+        if(other.gameObject.tag == "Fire" || other.gameObject.tag == "Spell"){
             if(health >0){
                 health -= 5;
                 Destroy(other.gameObject);
