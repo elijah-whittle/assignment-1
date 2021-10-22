@@ -96,6 +96,10 @@ public class Player : MonoBehaviour
     public float curr_cd = 3;
     bool ifCD = false;
 
+    public float max_cd_heal = 5;
+    public float curr_cd_heal = 5;
+    bool ifCD_heal = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -126,6 +130,28 @@ public class Player : MonoBehaviour
         anim.SetFloat("Speed", xSpeed);
     }
 
+    void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        hp = 100;
+        mp = 100;
+        alive = true;
+    }
+
+    bool Cooldown(float time)
+    {
+        bool onCD = true;
+        float curr_cdtime = time;
+        while (onCD) {
+            curr_cdtime -= Time.deltaTime;
+            if (curr_cdtime <= 0)
+            {
+                onCD = false;
+            }
+        }
+        return false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -135,6 +161,11 @@ public class Player : MonoBehaviour
         if (hp <= 0)
         {
             alive = false;
+
+            //anim.SetBool("isAlive", alive);
+
+            //Cooldown(3);
+            ResetScene();
             /*
             if (SceneManager.GetActiveScene() == 
             SceneManager.LoadScene("water");*/
@@ -160,8 +191,13 @@ public class Player : MonoBehaviour
         if ((xSpeed < 0 && transform.localScale.x > 0) || (xSpeed > 0 && transform.localScale.x < 0))
         {
             transform.localScale *= new Vector2(-1, 1);
-            anim.SetFloat("Speed", Mathf.Abs(xSpeed));
+            //anim.SetFloat("Speed", Mathf.Abs(xSpeed));
         }
+        else
+        {
+            transform.localScale *= new Vector2(1, 1);
+        }
+        anim.SetFloat("Speed", Mathf.Abs(xSpeed));
 
         grounded = Physics2D.OverlapCircle(feet.position, .3f, groundLayer);
 
@@ -255,20 +291,33 @@ public class Player : MonoBehaviour
 
 
             //if (Input.GetButtonDown("Fire3"))
-            if (Input.GetButtonDown("Fire2"))        //heals the player 
+            if (ifCD_heal == false)
             {
-                GameObject healing = Instantiate(healPrefab, feet.position, Quaternion.identity);
-                mg_deduct();
-                if (hp <= 85)
+                if (Input.GetButtonDown("Fire2"))        //heals the player 
                 {
-                    hp += 15;
-                }
-                else if (hp > 85)
-                {
-                    hp = 100;
-
+                    GameObject healing = Instantiate(healPrefab, feet.position, Quaternion.identity);
+                    if (hp <= 85)
+                    {
+                        hp += 15;
+                    }
+                    else if (hp > 85)
+                    {
+                        hp = 100;
+                    }
+                    mp -= 15;
+                    ifCD_heal = true;
+                    curr_cd_heal = max_cd;
                 }
             }
+            else
+            {
+                curr_cd_heal -= Time.deltaTime;
+                if (curr_cd_heal <= 0)
+                {
+                    ifCD_heal = false;
+                }
+            }
+
         }
 
 
