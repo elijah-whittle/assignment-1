@@ -2578,7 +2578,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2768910859769530394, guid: ead055378f53d0449b9aea567eb1484a, type: 3}
       propertyPath: nextLevel
-      value: earth
+      value: wind
       objectReference: {fileID: 0}
     - target: {fileID: 3273617299213907912, guid: ead055378f53d0449b9aea567eb1484a, type: 3}
       propertyPath: m_Materials.Array.data[0]
