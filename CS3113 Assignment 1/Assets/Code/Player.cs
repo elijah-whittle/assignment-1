@@ -278,7 +278,7 @@ public class Player : MonoBehaviour
                     _Timer = 0;
                     }
         }
-        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
+        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .6f, earthLayer);
         //spell
         if (mp >= 10)
         {

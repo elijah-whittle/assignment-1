@@ -738,7 +738,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150980908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65, y: 30.460001, z: -10}
+  m_LocalPosition: {x: -64.9, y: 30.36, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1531207818}
@@ -1096,7 +1096,7 @@ GameObject:
   - component: {fileID: 199983499}
   m_Layer: 6
   m_Name: ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2229,7 +2229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65, y: 30.460001, z: -10}
+  m_LocalPosition: {x: -64.9, y: 30.36, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2856,11 +2856,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4489533668827005210, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -65
+      value: -64.9
       objectReference: {fileID: 0}
     - target: {fileID: 4489533668827005210, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.7
+      value: 28.6
       objectReference: {fileID: 0}
     - target: {fileID: 4489533668827005210, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3037,7 +3037,7 @@ GameObject:
   - component: {fileID: 719072349}
   m_Layer: 6
   m_Name: ground 1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4951,7 +4951,7 @@ GameObject:
   - component: {fileID: 1122499459}
   m_Layer: 6
   m_Name: exitground1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6514,7 +6514,7 @@ GameObject:
   - component: {fileID: 1455009124}
   m_Layer: 6
   m_Name: underground (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7179,7 +7179,7 @@ GameObject:
   - component: {fileID: 1620809174}
   m_Layer: 6
   m_Name: underground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7730,7 +7730,7 @@ GameObject:
   - component: {fileID: 1733966545}
   m_Layer: 6
   m_Name: exitground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9205,11 +9205,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8638908005327991779, guid: af921df695fe06d4d995068a7ebacfbb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -62.3
+      value: -59.87
       objectReference: {fileID: 0}
     - target: {fileID: 8638908005327991779, guid: af921df695fe06d4d995068a7ebacfbb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.5
+      value: 28.38
       objectReference: {fileID: 0}
     - target: {fileID: 8638908005327991779, guid: af921df695fe06d4d995068a7ebacfbb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9246,6 +9246,10 @@ PrefabInstance:
     - target: {fileID: 8638908005327991783, guid: af921df695fe06d4d995068a7ebacfbb, type: 3}
       propertyPath: m_Name
       value: pill2.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638908005659621535, guid: af921df695fe06d4d995068a7ebacfbb, type: 3}
+      propertyPath: spell
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af921df695fe06d4d995068a7ebacfbb, type: 3}
