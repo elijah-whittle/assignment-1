@@ -100,8 +100,12 @@ public class Player : MonoBehaviour
     public float curr_cd_heal = 5;
     bool ifCD_heal = false;
     /*-------------------------------*/
-    public AudioManager audio_man;
+    //public AudioManager audio_man;
     public AudioSource jump;
+    public AudioSource water;
+    public AudioSource fire;
+    public AudioSource wind;
+    public AudioSource walk;
 
     // Start is called before the first frame update
     void Start()
@@ -112,8 +116,6 @@ public class Player : MonoBehaviour
         Wind_shield.GetComponent<Renderer>().enabled = false;
         Wind_shield.GetComponent<Collider2D>().enabled = false;
         anim = gameObject.GetComponent<Animator>();
-
-        //AudioSource jump = FindObjectOfType<AudioManager>().Search("Player_Jump"); //.PlayAudio("Jump");
         
         for (int i = 0; i < PublicVars.spells.Length; ++i)
         {
@@ -355,7 +357,6 @@ public class Player : MonoBehaviour
             anim.SetBool("IsJump", grounded || earthTouch);
             if ((grounded || earthTouch) && Input.GetButtonDown("Jump"))
             {
-                //audio_man.PlayAudio("Player_Jump");
                 jump.Play();
                 _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
                 _rigidbody.AddForce(new Vector2(0, jumpForce));
