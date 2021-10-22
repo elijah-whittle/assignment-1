@@ -93,9 +93,13 @@ public class EnemySlime : MonoBehaviour
             health -= 1;
             enemySpeed = 0;
         }
-        if (other.gameObject.CompareTag("Spell"))
+        if (other.gameObject.CompareTag("Spell") || other.gameObject.CompareTag("attack_spell"))
         {
             health -= 5;
+        }
+        if (other.gameObject.CompareTag("Fire"))
+        {
+            health -= 2;
         }
         if (other.gameObject.CompareTag("wall"))
         {
@@ -120,10 +124,12 @@ public class EnemySlime : MonoBehaviour
             if (dir == 1)
             {
                 dir = -1;
+                rb.velocity = new Vector2(Mathf.Abs(dif) * enemySpeed * dir, rb.velocity.y);
             }
             else
             {           
                 dir = 1;
+                rb.velocity = new Vector2(Mathf.Abs(dif) * enemySpeed * dir, rb.velocity.y);
             }
         }
         if (!grounded)
