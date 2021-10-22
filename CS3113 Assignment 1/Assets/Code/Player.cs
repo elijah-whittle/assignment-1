@@ -114,7 +114,11 @@ public class Player : MonoBehaviour
             }
         }
     }
-
+    private float Timebetween = 0.5f;
+    float _Timer;
+    void mg_deduct(){
+        mp -=10;
+    }
     void FixedUpdate()
     {
         xSpeed = Input.GetAxis("Horizontal") * speed;
@@ -183,8 +187,17 @@ public class Player : MonoBehaviour
             magic = Magic.Wind;
             Select(windLoc);
         }
-
-        /* Fire */
+        _Timer+=Time.deltaTime;
+        if (_Timer>Timebetween){
+                    if(mp<100){
+                        mp+=1;
+                    _Timer = 0;
+                    }
+        }
+        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
+        //spell
+        if (mp>=10){
+                /* Fire */
         if (magic == Magic.Fire && PublicVars.spells[fireLoc])
         {
             if (Input.GetMouseButtonDown(0))
@@ -192,6 +205,7 @@ public class Player : MonoBehaviour
                 GameObject fire = Instantiate(fireBall);
                 fire.GetComponent<fire>().shoot(left);
                 fire.transform.position = firePos.transform.position;
+                mg_deduct();
             }
 
             if (Input.GetMouseButtonDown(1))
@@ -199,11 +213,12 @@ public class Player : MonoBehaviour
                 GameObject torch = Instantiate(lightBall);
                 torch.transform.position = lightPos.transform.position;
                 Destroy(torch, 10.0f);
+                mg_deduct();
             }
         }
 
         /* Earth */
-        Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
+
         if (magic == Magic.Earth && PublicVars.spells[earthLoc])
         {
             float vert = Input.GetAxis("Vertical") * Time.deltaTime;
@@ -226,6 +241,7 @@ public class Player : MonoBehaviour
                     //StartCoroutine(Cooldown());
                     ifCD = true;
                     curr_cd = max_cd;
+                    mg_deduct();
                 }
             }
             else
@@ -242,6 +258,7 @@ public class Player : MonoBehaviour
             if (Input.GetButtonDown("Fire2"))        //heals the player 
             {
                 GameObject healing = Instantiate(healPrefab, feet.position, Quaternion.identity);
+                mg_deduct();
                 if (hp <= 85)
                 {
                     hp += 15;
@@ -263,6 +280,7 @@ public class Player : MonoBehaviour
                 if (Wind_power)
                 {
                     GameObject newwind_blade = Instantiate(Wind_blade, wind_blade_pos.position, Quaternion.identity);
+                    mg_deduct();
                 }
             }
             if (Input.GetButtonDown("Fire2"))
@@ -272,6 +290,7 @@ public class Player : MonoBehaviour
                     Wind_shield.GetComponent<Renderer>().enabled = true;
                     Wind_shield.GetComponent<Collider2D>().enabled = true;
                     Invoke("closewindshield", 2);
+                    mg_deduct();
                 }
             }
         }
@@ -284,6 +303,8 @@ public class Player : MonoBehaviour
             _rigidbody.AddForce(new Vector2(0, jumpForce));
             //anim.SetBool("IsJump", true);
         }
+        }
+        
     }
 
     /*
