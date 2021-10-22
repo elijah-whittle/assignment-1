@@ -112,6 +112,7 @@ public class EnemySlime : MonoBehaviour
             {
                 dir = 1;
             }
+            rb.velocity = new Vector2(4 * enemySpeed * dir, rb.velocity.y);
         }
         
     }
@@ -121,19 +122,20 @@ public class EnemySlime : MonoBehaviour
     {
         grounded = Physics2D.OverlapCircle(frontFeet.position, .3f, groundLayer);
         grounded2 = Physics2D.OverlapCircle(backFeet.position, .3f, groundLayer);
+
         if (!grounded || !grounded2)
         {
             if (dir == 1)
             {
                 dir = -1;
-                rb.velocity = new Vector2(Mathf.Abs(dif) * enemySpeed * dir, rb.velocity.y);
             }
             else
             {           
                 dir = 1;
-                rb.velocity = new Vector2(Mathf.Abs(dif) * enemySpeed * dir, rb.velocity.y);
             }
+            rb.velocity = new Vector2(Mathf.Abs(dif) * enemySpeed * dir, rb.velocity.y);
         }
+
         if (!grounded)
         {
             dif = rb.position.x - frontFeet.position.x;
@@ -142,8 +144,9 @@ public class EnemySlime : MonoBehaviour
         {
             dif = rb.position.x - backFeet.position.x;
         }
+
         //float dif = rb.position.x - frontFeet.position.x;
-        
+
         if (dir == 1)
         {
             //transform.localScale *= new Vector2(-1, 1);

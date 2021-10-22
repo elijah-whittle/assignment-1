@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2326742128636055883, guid: 3b33c8c2655fa754b9f26bc6da4d69f9, type: 3}
       propertyPath: m_Name
-      value: Mana Bottle
+      value: Mana Bottle Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2326742128636055883, guid: 3b33c8c2655fa754b9f26bc6da4d69f9, type: 3}
       propertyPath: m_TagString
@@ -66,4 +66,5 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2326742128636055884, guid: 3b33c8c2655fa754b9f26bc6da4d69f9, type: 3}
     - {fileID: 2326742128636055873, guid: 3b33c8c2655fa754b9f26bc6da4d69f9, type: 3}
+    - {fileID: 1994990596, guid: 3b33c8c2655fa754b9f26bc6da4d69f9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3b33c8c2655fa754b9f26bc6da4d69f9, type: 3}
