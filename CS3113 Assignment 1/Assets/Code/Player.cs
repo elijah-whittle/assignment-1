@@ -99,6 +99,9 @@ public class Player : MonoBehaviour
     public float max_cd_heal = 5;
     public float curr_cd_heal = 5;
     bool ifCD_heal = false;
+    /*-------------------------------*/
+    public AudioManager audio_man;
+    public AudioSource jump;
 
     // Start is called before the first frame update
     void Start()
@@ -110,6 +113,8 @@ public class Player : MonoBehaviour
         Wind_shield.GetComponent<Collider2D>().enabled = false;
         anim = gameObject.GetComponent<Animator>();
 
+        //AudioSource jump = FindObjectOfType<AudioManager>().Search("Player_Jump"); //.PlayAudio("Jump");
+        
         for (int i = 0; i < PublicVars.spells.Length; ++i)
         {
             if (PublicVars.spells[i])
@@ -128,6 +133,7 @@ public class Player : MonoBehaviour
         xSpeed = Input.GetAxis("Horizontal") * speed;
         _rigidbody.velocity = new Vector2(xSpeed, _rigidbody.velocity.y);
         anim.SetFloat("Speed", xSpeed);
+        
     }
 
     void ResetScene()
@@ -232,126 +238,129 @@ public class Player : MonoBehaviour
         }
         Collider2D earthTouch = Physics2D.OverlapCircle(feet.position, .5f, earthLayer);
         //spell
-        if (mp>=10){
-                /* Fire */
-        if (magic == Magic.Fire && PublicVars.spells[fireLoc])
+        if (mp >= 10)
         {
-            if (Input.GetMouseButtonDown(0))
+            /* Fire */
+            if (magic == Magic.Fire && PublicVars.spells[fireLoc])
             {
-                GameObject fire = Instantiate(fireBall);
-                fire.GetComponent<fire>().shoot(left);
-                fire.transform.position = firePos.transform.position;
-                mg_deduct();
+                if (Input.GetMouseButtonDown(0))
+                {
+                    GameObject fire = Instantiate(fireBall);
+                    fire.GetComponent<fire>().shoot(left);
+                    fire.transform.position = firePos.transform.position;
+                    mg_deduct();
+                }
+
+                if (Input.GetMouseButtonDown(1))
+                {
+                    GameObject torch = Instantiate(lightBall);
+                    torch.transform.position = lightPos.transform.position;
+                    Destroy(torch, 10.0f);
+                    mg_deduct();
+                }
             }
 
-            if (Input.GetMouseButtonDown(1))
+            /* Earth */
+
+            if (magic == Magic.Earth && PublicVars.spells[earthLoc])
             {
-                GameObject torch = Instantiate(lightBall);
-                torch.transform.position = lightPos.transform.position;
-                Destroy(torch, 10.0f);
-                mg_deduct();
+                float vert = Input.GetAxis("Vertical") * Time.deltaTime;
+                if (vert != 0f && earthTouch)
+                {
+                    earthTouch.gameObject.GetComponent<earth>().stretch(vert);
+                }
             }
-        }
 
-        /* Earth */
-
-        if (magic == Magic.Earth && PublicVars.spells[earthLoc])
-        {
-            float vert = Input.GetAxis("Vertical") * Time.deltaTime;
-            if (vert != 0f && earthTouch) 
+            /* Water */
+            if (magic == Magic.Water && PublicVars.spells[waterLoc])
             {
-                earthTouch.gameObject.GetComponent<earth>().stretch(vert);
-            }
-        }
+                //if (Input.GetButtonDown("Fire1"))
+                if (ifCD == false)
+                {
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        GameObject newBlast = Instantiate(icePrefab, castPos.position, Quaternion.identity);
+                        newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x, 0));
+                        //StartCoroutine(Cooldown());
+                        ifCD = true;
+                        curr_cd = max_cd;
+                        mg_deduct();
+                    }
+                }
+                else
+                {
+                    curr_cd -= Time.deltaTime;
+                    if (curr_cd <= 0)
+                    {
+                        ifCD = false;
+                    }
+                }
 
-        /* Water */
-        if (magic == Magic.Water && PublicVars.spells[waterLoc])
-        {
-            //if (Input.GetButtonDown("Fire1"))
-            if (ifCD == false)
+
+                //if (Input.GetButtonDown("Fire3"))
+                if (ifCD_heal == false)
+                {
+                    if (Input.GetButtonDown("Fire2"))        //heals the player 
+                    {
+                        GameObject healing = Instantiate(healPrefab, feet.position, Quaternion.identity);
+                        if (hp <= 85)
+                        {
+                            hp += 15;
+                        }
+                        else if (hp > 85)
+                        {
+                            hp = 100;
+                        }
+                        mp -= 15;
+                        ifCD_heal = true;
+                        curr_cd_heal = max_cd;
+                    }
+                }
+                else
+                {
+                    curr_cd_heal -= Time.deltaTime;
+                    if (curr_cd_heal <= 0)
+                    {
+                        ifCD_heal = false;
+                    }
+                }
+
+            }
+
+
+            /* Wind */
+            if (magic == Magic.Wind && PublicVars.spells[windLoc])
             {
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    GameObject newBlast = Instantiate(icePrefab, castPos.position, Quaternion.identity);
-                    newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x, 0));
-                    //StartCoroutine(Cooldown());
-                    ifCD = true;
-                    curr_cd = max_cd;
-                    mg_deduct();
-                }
-            }
-            else
-            {
-                curr_cd -= Time.deltaTime;
-                if (curr_cd <= 0)
-                {
-                    ifCD = false;
-                }
-            }
-
-
-            //if (Input.GetButtonDown("Fire3"))
-            if (ifCD_heal == false)
-            {
-                if (Input.GetButtonDown("Fire2"))        //heals the player 
-                {
-                    GameObject healing = Instantiate(healPrefab, feet.position, Quaternion.identity);
-                    if (hp <= 85)
+                    if (Wind_power)
                     {
-                        hp += 15;
+                        GameObject newwind_blade = Instantiate(Wind_blade, wind_blade_pos.position, Quaternion.identity);
+                        mg_deduct();
                     }
-                    else if (hp > 85)
+                }
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    if (Wind_power)
                     {
-                        hp = 100;
+                        Wind_shield.GetComponent<Renderer>().enabled = true;
+                        Wind_shield.GetComponent<Collider2D>().enabled = true;
+                        Invoke("closewindshield", 2);
+                        mg_deduct();
                     }
-                    mp -= 15;
-                    ifCD_heal = true;
-                    curr_cd_heal = max_cd;
                 }
             }
-            else
+
+            // jump
+            anim.SetBool("IsJump", grounded || earthTouch);
+            if ((grounded || earthTouch) && Input.GetButtonDown("Jump"))
             {
-                curr_cd_heal -= Time.deltaTime;
-                if (curr_cd_heal <= 0)
-                {
-                    ifCD_heal = false;
-                }
+                //audio_man.PlayAudio("Player_Jump");
+                jump.Play();
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
+                _rigidbody.AddForce(new Vector2(0, jumpForce));
+                //anim.SetBool("IsJump", true);
             }
-
-        }
-
-
-        /* Wind */
-        if (magic == Magic.Wind && PublicVars.spells[windLoc])
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                if (Wind_power)
-                {
-                    GameObject newwind_blade = Instantiate(Wind_blade, wind_blade_pos.position, Quaternion.identity);
-                    mg_deduct();
-                }
-            }
-            if (Input.GetButtonDown("Fire2"))
-            {
-                if (Wind_power)
-                {
-                    Wind_shield.GetComponent<Renderer>().enabled = true;
-                    Wind_shield.GetComponent<Collider2D>().enabled = true;
-                    Invoke("closewindshield", 2);
-                    mg_deduct();
-                }
-            }
-        }
-
-        // jump
-        anim.SetBool("IsJump", grounded || earthTouch);
-        if ((grounded || earthTouch) && Input.GetButtonDown("Jump"))
-        {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0);
-            _rigidbody.AddForce(new Vector2(0, jumpForce));
-            //anim.SetBool("IsJump", true);
-        }
         }
         
     }
