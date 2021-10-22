@@ -8,7 +8,7 @@ public class ItemDisplay : MonoBehaviour
     public Color selected;
     public Color deselected;
     public GameObject activeIcon;
-    Image activeImage;
+    public Image activeImage;
     public Sprite active;
     public Sprite locked;
     

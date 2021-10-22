@@ -1632,7 +1632,7 @@ Transform:
   m_GameObject: {fileID: 759966404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 52.7, y: 37.5, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalScale: {x: 14, y: 14, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 35
@@ -2973,10 +2973,6 @@ PrefabInstance:
       propertyPath: health_img
       value: 
       objectReference: {fileID: 1401510298}
-    - target: {fileID: 1209439345, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 80694af6dda76ec488ca903385876313, type: 3}
     - target: {fileID: 4489533668827005208, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
       propertyPath: itemPanels.Array.data[0]
       value: 
@@ -3041,23 +3037,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4489533668827005215, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
-      propertyPath: m_Size.x
-      value: 1.2883215
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489533668827005215, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
-      propertyPath: m_Size.y
-      value: 1.6274595
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489533668827005215, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.12187469
-      objectReference: {fileID: 0}
-    - target: {fileID: 4489533668827005215, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.043543458
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1862875957, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
 --- !u!114 &1401510298 stripped
 MonoBehaviour:
