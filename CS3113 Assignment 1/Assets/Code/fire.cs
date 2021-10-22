@@ -8,6 +8,7 @@ using UnityEngine;
 public class fire : MonoBehaviour
 {
 
+    int jumps = 0;
     public int damage = 20;
     public float speed = 20f;
     public Rigidbody2D rigid2D;
@@ -28,6 +29,7 @@ public class fire : MonoBehaviour
             leftCheck = left;
             rigid2D.velocity = new Vector2(speed, 0);
         }
+
     }
 
     // Update is called once per frame
@@ -36,6 +38,10 @@ public class fire : MonoBehaviour
         if(rigid2D.velocity.y < vel.y){
             rigid2D.velocity = vel;
         }
+
+        if(jumps > 3){
+            Destroy(gameObject);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -43,11 +49,17 @@ public class fire : MonoBehaviour
         if(other.gameObject.tag == "Ground"){
             if(leftCheck == true){
                 rigid2D.velocity = new Vector2(-vel.x, -vel.y);
+                ++jumps;
             }
             else{
                 rigid2D.velocity = new Vector2(vel.x, -vel.y);
+                ++jumps;
             }
         }
+        if(jumps > 3){
+            Destroy(gameObject);
+        }
+        
         Destroy(gameObject, 5.0f);
     }
     
