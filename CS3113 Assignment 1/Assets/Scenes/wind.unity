@@ -5598,6 +5598,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4489533668827005213, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
   m_PrefabInstance: {fileID: 635267771}
   m_PrefabAsset: {fileID: 0}
+--- !u!81 &1213003529
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213003528}
+  m_Enabled: 1
 --- !u!4 &1213003536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4489533668827005210, guid: 8ed2c55168f1658468c2d70fb5d1cce2, type: 3}
