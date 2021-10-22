@@ -9247,6 +9247,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pill2.0
       objectReference: {fileID: 0}
+    - target: {fileID: 8638908005659621535, guid: af921df695fe06d4d995068a7ebacfbb, type: 3}
+      propertyPath: spell
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af921df695fe06d4d995068a7ebacfbb, type: 3}
 --- !u!1001 &8899368088813022922
