@@ -92,8 +92,8 @@ public class Player : MonoBehaviour
     public int hp = 100;
     public bool alive = true;
     /*-------------------------------*/
-    public float max_cd = 3;
-    public float curr_cd = 3;
+    public float max_cd = 2;
+    public float curr_cd = 2;
     bool ifCD = false;
 
     public float max_cd_heal = 5;
@@ -103,8 +103,12 @@ public class Player : MonoBehaviour
     //public AudioManager audio_man;
     public AudioSource jump;
     public AudioSource water;
-    public AudioSource fire;
-    public AudioSource wind;
+    public AudioSource FireSound;
+    public AudioSource TorchSound;
+    public AudioSource HealingSound;
+    public AudioSource WindSound;
+    public AudioSource WindShieldSound;
+    public AudioSource IceSound;
     public AudioSource walk;
 
     // Start is called before the first frame update
@@ -174,14 +178,11 @@ public class Player : MonoBehaviour
 
             //Cooldown(3);
             ResetScene();
-            /*
-            if (SceneManager.GetActiveScene() == 
-            SceneManager.LoadScene("water");*/
         }
         anim.SetBool("isAlive", alive);
 
         // if you fall off the map
-        if (transform.position.y < -10)
+        if (transform.position.y < -15)
         {
             transform.position = Vector2.zero;
             _rigidbody.velocity = Vector2.zero;
@@ -247,6 +248,7 @@ public class Player : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
+                    FireSound.Play();
                     GameObject fire = Instantiate(fireBall);
                     fire.GetComponent<fire>().shoot(left);
                     fire.transform.position = firePos.transform.position;
@@ -255,6 +257,7 @@ public class Player : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(1))
                 {
+                    TorchSound.Play();
                     GameObject torch = Instantiate(lightBall);
                     torch.transform.position = lightPos.transform.position;
                     Destroy(torch, 10.0f);
@@ -281,6 +284,7 @@ public class Player : MonoBehaviour
                 {
                     if (Input.GetButtonDown("Fire1"))
                     {
+                        IceSound.Play();
                         GameObject newBlast = Instantiate(icePrefab, castPos.position, Quaternion.identity);
                         newBlast.GetComponent<Rigidbody2D>().AddForce(new Vector2(castingForce * transform.localScale.x, 0));
                         //StartCoroutine(Cooldown());
@@ -313,6 +317,7 @@ public class Player : MonoBehaviour
                         {
                             hp = 100;
                         }
+                        HealingSound.Play();
                         mp -= 15;
                         ifCD_heal = true;
                         curr_cd_heal = max_cd;
@@ -337,6 +342,7 @@ public class Player : MonoBehaviour
                 {
                     if (Wind_power)
                     {
+                        WindSound.Play();
                         GameObject newwind_blade = Instantiate(Wind_blade, wind_blade_pos.position, Quaternion.identity);
                         mg_deduct();
                     }
@@ -345,6 +351,7 @@ public class Player : MonoBehaviour
                 {
                     if (Wind_power)
                     {
+                        WindShieldSound.Play();
                         Wind_shield.GetComponent<Renderer>().enabled = true;
                         Wind_shield.GetComponent<Collider2D>().enabled = true;
                         Invoke("closewindshield", 2);
@@ -398,9 +405,8 @@ public class Player : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Door"))
             {
-                PublicVars.currentLevel = (PublicVars.currentLevel + 1) % 4;
                 paperCollected = false;
-                SceneManager.LoadScene(PublicVars.elements[PublicVars.currentLevel]);
+                SceneManager.LoadScene(collision.gameObject.GetComponent<Door>().nextLevel);
             }
         }
         if(collision.tag == "wind_pill"){
