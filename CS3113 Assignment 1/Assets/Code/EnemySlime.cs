@@ -84,9 +84,9 @@ public class EnemySlime : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("ice"))
+        if (other.gameObject.CompareTag("ice") || other.gameObject.CompareTag("Fire") || other.gameObject.CompareTag("attack_spell"))
         {
-            health -= 1;
+            health -= 2;
             enemySpeed = 0;
         }
         if (other.gameObject.CompareTag("wall"))
