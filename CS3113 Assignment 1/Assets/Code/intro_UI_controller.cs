@@ -14,7 +14,7 @@ public class intro_UI_controller : MonoBehaviour
     public Transform master_attack;
     public Transform final_pos;
     private float Player_trans;
-    private int stage = 0;
+    private float stage = 0;
     void Start()
     {
         
@@ -50,15 +50,24 @@ public class intro_UI_controller : MonoBehaviour
             if(Player_trans>=master_attack.position.x){
                 light_instruction.SetActive(false);
                 attack_instruction.SetActive(true);
-                stage=3;
+                stage= 3;
                 print(stage);
             }
         }
         else if (stage == 3){
+            if(Player_trans>=final_pos.position.x){
+                light_instruction.SetActive(false);
+                attack_instruction.SetActive(true);
+                stage= 4;
+                print(stage);
+            }
+        }
+        else if (stage == 4){
                 move_instruction.SetActive(true);
                 attack_instruction.SetActive(false);
-                stage=4;
+                stage=5;
                 print(stage);
+            
         }
         
     }
