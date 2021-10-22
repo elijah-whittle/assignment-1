@@ -1069,7 +1069,7 @@ GameObject:
   - component: {fileID: 224880024}
   - component: {fileID: 224880023}
   - component: {fileID: 224880022}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: fire ground_1 (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
