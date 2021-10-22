@@ -1244,7 +1244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3984699798887086508, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -44.32
+      value: -44.25
       objectReference: {fileID: 0}
     - target: {fileID: 3984699798887086508, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1297,6 +1297,10 @@ PrefabInstance:
     - target: {fileID: 5278123302418316945, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}
       propertyPath: minHeight
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5278123302418316945, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}
+      propertyPath: stretchSpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}
@@ -4061,6 +4065,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2768910859769530394, guid: ead055378f53d0449b9aea567eb1484a, type: 3}
+      propertyPath: nextLevel
+      value: win
+      objectReference: {fileID: 0}
     - target: {fileID: 3273617299213907913, guid: ead055378f53d0449b9aea567eb1484a, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -4513,7 +4521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3984699798887086508, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.83
+      value: -3.43
       objectReference: {fileID: 0}
     - target: {fileID: 3984699798887086508, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4557,11 +4565,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5278123302418316945, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}
       propertyPath: maxHeight
-      value: 29
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 5278123302418316945, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}
       propertyPath: minHeight
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5278123302418316945, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}
+      propertyPath: stretchSpeed
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7f4e3bf40a10d842877b9b90288cf69, type: 3}

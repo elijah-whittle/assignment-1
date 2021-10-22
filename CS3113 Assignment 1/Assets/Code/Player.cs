@@ -398,9 +398,8 @@ public class Player : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Door"))
             {
-                PublicVars.currentLevel = (PublicVars.currentLevel + 1) % 4;
                 paperCollected = false;
-                SceneManager.LoadScene(PublicVars.elements[PublicVars.currentLevel]);
+                SceneManager.LoadScene(collision.gameObject.GetComponent<Door>().nextLevel);
             }
         }
         if(collision.tag == "wind_pill"){
