@@ -28,6 +28,10 @@ public class EnemySlime : MonoBehaviour
 
     State currentState;
     SpriteRenderer rend;
+    //----slow cooldown----//
+    public float max_cd = 3;
+    public float curr_cd = 3;
+
     void Start()
     {
         //Vector2 currPos = transform.position;
@@ -84,10 +88,18 @@ public class EnemySlime : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("ice") || other.gameObject.CompareTag("Fire") || other.gameObject.CompareTag("attack_spell"))
+        if (other.gameObject.CompareTag("ice"))
+        {
+            health -= 1;
+            enemySpeed = 0;
+        }
+        if (other.gameObject.CompareTag("Spell") || other.gameObject.CompareTag("attack_spell"))
+        {
+            health -= 5;
+        }
+        if (other.gameObject.CompareTag("Fire"))
         {
             health -= 2;
-            enemySpeed = 0;
         }
         if (other.gameObject.CompareTag("wall"))
         {
@@ -112,10 +124,12 @@ public class EnemySlime : MonoBehaviour
             if (dir == 1)
             {
                 dir = -1;
+                rb.velocity = new Vector2(Mathf.Abs(dif) * enemySpeed * dir, rb.velocity.y);
             }
             else
-            {
+            {           
                 dir = 1;
+                rb.velocity = new Vector2(Mathf.Abs(dif) * enemySpeed * dir, rb.velocity.y);
             }
         }
         if (!grounded)
@@ -127,12 +141,15 @@ public class EnemySlime : MonoBehaviour
             dif = rb.position.x - backFeet.position.x;
         }
         //float dif = rb.position.x - frontFeet.position.x;
+        
         if (dir == 1)
         {
+            //transform.localScale *= new Vector2(-1, 1);
             rend.flipX = false;
         }
         else
         {
+            //transform.localScale *= new Vector2(1, 1);
             rend.flipX = true;
         }
 
@@ -141,6 +158,17 @@ public class EnemySlime : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+        }
+
+        if (enemySpeed == 0)
+        {
+            curr_cd -= Time.deltaTime;
+            if (curr_cd <= 0)
+            {
+                enemySpeed = 2;
+                //ifCD = false;
+                curr_cd = max_cd;
+            }
         }
         //gameObject.position.x += enemySpeed;
     }
