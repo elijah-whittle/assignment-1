@@ -100,8 +100,8 @@ public class Player : MonoBehaviour
     public float curr_cd_heal = 5;
     bool ifCD_heal = false;
 
-    public float max_respawn_time = 4.5f;
-    public float curr_respawn_time = 4.5f;
+    public float max_respawn_time = 7f;
+    public float curr_respawn_time = 7f;
     bool if_respawn = false;
     /*-------------------------------*/
     //public AudioManager audio_man;
@@ -148,12 +148,12 @@ public class Player : MonoBehaviour
 
     void ResetScene()
     {
-        
+        alive = true;
+        anim.SetBool("isAlive", alive);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         hp = 100;
         mp = 100;
         speed = 4;
-        alive = true;
     }
 
     bool Cooldown(float time)
@@ -212,14 +212,19 @@ public class Player : MonoBehaviour
         {
             transform.position = Vector2.zero;
             _rigidbody.velocity = Vector2.zero;
-            if (hp <= 10)
+            if (hp <= 0)
+            {
+                ResetScene();
+            }
+            else if (hp <= 10)
             {
                 hp = 0;
             }
-            else if (hp > 85)
+            else if (hp > 10)
             {
                 hp -= 10;
             }
+            
         }
 
         if (xSpeed < 0)
