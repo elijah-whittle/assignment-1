@@ -82,17 +82,6 @@ public class witch : MonoBehaviour{
         }
 
     }
-    void OnCollisionEnter2D(Collision2D other){
-        if ( other.gameObject.tag == "Fire")
-        {
-            health -= 2;
-            print(health);
-        }
-        if (health<=0){
-            Destroy(exit);
-            Destroy(gameObject);
-        }
-    }
 
     // Update is called once per frame
     private void FixedUpdate(){

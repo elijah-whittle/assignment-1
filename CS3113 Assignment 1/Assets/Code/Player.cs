@@ -92,8 +92,8 @@ public class Player : MonoBehaviour
     public int hp = 100;
     public bool alive = true;
     /*-------------------------------*/
-    public float max_cd = 1.2f;
-    public float curr_cd = 1.2f;
+    public float max_cd = 2;
+    public float curr_cd = 2;
     bool ifCD = false;
 
     public float max_cd_heal = 5;
